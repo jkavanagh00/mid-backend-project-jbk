@@ -8,6 +8,7 @@ export async function up(knex) {
         t.integer("event_id").notNullable().references("id").inTable("event");
         t.integer("quantity").notNullable().checkPositive();
         t.decimel("unit_price", 10, 2).notNullable();
+        t.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
     });
 }
 
