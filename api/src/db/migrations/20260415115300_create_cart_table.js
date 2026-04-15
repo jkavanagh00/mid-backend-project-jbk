@@ -5,7 +5,7 @@ export async function up(knex) {
     await knex.schema.createTable("cart", (t) => {
         t.increments("id").primary();
         t.integer("account_id").notNullable().references("id").inTable("account");
-        t.string("status").notNullable();
+        t.enu("status", ["active", "checked_out", "abandoned"]).notNullable();
         t.timestamps(true, true);
     });
 }
