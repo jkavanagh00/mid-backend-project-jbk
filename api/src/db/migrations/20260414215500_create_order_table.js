@@ -6,7 +6,7 @@ export async function up(knex) {
         t.increments("id").primary();
         t.integer("account_id").notNullable().references("id").inTable("account");
         t.integer("event_id").notNullable().references("id").inTable("event");
-        t.string("status").notNullable();
+        t.enu("status", ["pending", "confirmed", "cancelled"]).notNullable();
         t.timestamps(true, true);
     });
 }
