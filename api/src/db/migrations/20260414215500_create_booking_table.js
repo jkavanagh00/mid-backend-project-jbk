@@ -7,7 +7,7 @@ export async function up(knex) {
         t.integer("user_id").notNullable().references("id").inTable("user");
         t.integer("event_id").notNullable().references("id").inTable("event");
         t.string("status").notNullable();
-        t.timestamp("created_at").notNullable();
+        t.timestamps(true, true);
     });
 }
 
