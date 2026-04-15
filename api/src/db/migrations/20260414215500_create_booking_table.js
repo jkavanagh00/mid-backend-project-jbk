@@ -4,7 +4,7 @@
 export async function up(knex) {
     await knex.schema.createTable("booking", (t) => {
         t.increments("id").primary();
-        t.integer("user_id").notNullable().references("id").inTable("user");
+        t.integer("account_id").notNullable().references("id").inTable("account");
         t.integer("event_id").notNullable().references("id").inTable("event");
         t.string("status").notNullable();
         t.timestamps(true, true);
