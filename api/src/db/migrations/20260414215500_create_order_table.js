@@ -2,7 +2,7 @@
  * @param {import("knex").Knex} knex
  */
 export async function up(knex) {
-    await knex.schema.createTable("booking", (t) => {
+    await knex.schema.createTable("order", (t) => {
         t.increments("id").primary();
         t.integer("account_id").notNullable().references("id").inTable("account");
         t.integer("event_id").notNullable().references("id").inTable("event");
@@ -15,5 +15,5 @@ export async function up(knex) {
  * @param {import("knex").Knex} knex
  */
 export async function down(knex) {
-    await knex.schema.dropTableIfExists("booking");
+    await knex.schema.dropTableIfExists("order");
 }
