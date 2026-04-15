@@ -47,6 +47,15 @@ The `db:setup` command is useful when:
 - You want to reset your local database
 - You are running the demo version of the API
 
+### Entity Relationship Diagram (ERD)
+
+Database schema documentation for this project is available in two formats:
+
+- PNG preview (quick view): [ERD image](../images/render/database/ERD_draw.io.png)
+- Editable source (draw.io XML): [ERD source file](./src/db/Events%20Startup%20Project.drawio.xml)
+
+Use the source file when you need to update relationships, attributes, or cardinality.
+
 ### Important for trainees
 
 This skeleton includes a simple **MVC-style structure**:
