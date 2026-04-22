@@ -24,7 +24,10 @@ import cors from "cors";          // Cross-Origin Resource Sharing middleware
 import bodyParser from "body-parser"; // JSON body parsing
 import rootRouter from "#routers";    // Main router aggregator
 import swaggerSetup from "#configs/swagger.js"; // Swagger documentation setup
-import middlewares from "#middlewares"; // Global middleware array
+import {
+  globalMiddlewares,
+  terminalMiddlewares,
+} from "#middlewares"; // Middleware groups
 
 // ------------------------------------------------------------------
 // Application Initialization
@@ -43,7 +46,7 @@ app.use(bodyParser.json());
 // ------------------------------------------------------------------
 // Middlewares are applied in sequence before route handlers.
 // This allows centralized handling (e.g. logging, error formatting, etc.)
-for (const middleware of middlewares) {
+for (const middleware of globalMiddlewares) {
   app.use(middleware);
 }
 
@@ -61,6 +64,14 @@ app.use("/", rootRouter);
 // Swagger scans the app and detects all available endpoints,
 // regardless of whether they are documented or not.
 swaggerSetup(app);
+
+// ------------------------------------------------------------------
+// Register Terminal Middlewares
+// ------------------------------------------------------------------
+// These run after route handlers and documentation routes.
+for (const middleware of terminalMiddlewares) {
+  app.use(middleware);
+}
 
 // ------------------------------------------------------------------
 // Start Server

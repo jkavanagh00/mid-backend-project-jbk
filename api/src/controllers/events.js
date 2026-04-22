@@ -6,6 +6,12 @@ import {
     updateEvent,
     deleteEvent,
 } from "#models/events.js";
+import {
+    EventIdParams,
+    EventInput,
+    EventListQuery,
+    EventPatchInput,
+} from "#schemas/events.js";
 
 /**
  * Event controller (MVC example)
@@ -35,12 +41,13 @@ import {
  *
  * Query Parameters:
  * - page (number, optional, default = 0)
+ * - pageSize (number, optional, default = 20)
  *
  * Pagination Strategy:
- * - Fixed page size (PAGE_SIZE)
- * - offset = page * PAGE_SIZE
+ * - Query params are validated and normalized with EventListQuery
+ * - offset = page * pageSize
  * - totalItems calculated via countEvents()
- * - totalPages = ceil(totalItems / PAGE_SIZE)
+ * - totalPages = ceil(totalItems / pageSize)
  *
  * Response Shape:
  * {
@@ -59,29 +66,27 @@ import {
  */
 export async function getEvents(req, res, next) {
     try {
-        const PAGE_SIZE = 5;
-
-        // Parse page safely (ensure non-negative integer)
-        const page = Math.max(Number(req.query.page ?? 0), 0);
-        const offset = page * PAGE_SIZE;
+        // Parse and normalize query params before calculating pagination.
+        const { page, pageSize } = EventListQuery.parse(req.query);
+        const offset = page * pageSize;
 
         const filters = {}; // TODO (required project work): map req.query filters here
 
         const data = await listEvents(filters, {
-            limit: PAGE_SIZE,
+            limit: pageSize,
             offset,
             orderBy: "id",
             order: "asc",
         });
 
         const totalItems = await countEvents(filters);
-        const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+        const totalPages = Math.ceil(totalItems / pageSize);
 
         res.json({
             data,
             meta: {
                 page,
-                pageSize: PAGE_SIZE,
+                pageSize,
                 totalItems,
                 totalPages,
             },
@@ -102,7 +107,8 @@ export async function getEvents(req, res, next) {
  */
 export async function getEventById(req, res, next) {
     try {
-        const event = await findEventById(req.params.id);
+        const { id } = EventIdParams.parse(req.params);
+        const event = await findEventById(id);
 
         if (!event) {
             return res.status(404).json({
@@ -126,10 +132,10 @@ export async function getEventById(req, res, next) {
  * scope is explicitly added.
  */
 export async function postEvent(req, res, next) {
-
     // OPTIONAL TODO: implement this handler only if optional scope is taken on
     try {
-        await createEvent(req.body);
+        // Parse the request body before handing data to the model layer.
+        await createEvent(EventInput.parse(req.body));
 
         return res.status(501).json({
             error:
@@ -151,7 +157,11 @@ export async function postEvent(req, res, next) {
 export async function patchEvent(req, res, next) {
     // OPTIONAL TODO: implement this handler only if optional scope is taken on
     try {
-        await updateEvent(req.params.id, req.body);
+        // Validate both the route params and the partial PATCH payload.
+        const { id } = EventIdParams.parse(req.params);
+        const eventPatchInput = EventPatchInput.parse(req.body);
+
+        await updateEvent(id, eventPatchInput);
 
         return res.status(501).json({
             error:
@@ -173,7 +183,10 @@ export async function patchEvent(req, res, next) {
 export async function removeEvent(req, res, next) {
     // OPTIONAL TODO: implement this handler only if optional scope is taken on
     try {
-        await deleteEvent(req.params.id);
+        // DELETE only needs validated route params.
+        const { id } = EventIdParams.parse(req.params);
+
+        await deleteEvent(id);
 
         return res.status(501).json({
             error:

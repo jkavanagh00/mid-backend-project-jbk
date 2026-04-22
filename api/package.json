@@ -13,12 +13,14 @@
     "start": "node src/index.mjs",
     "format": "npx prettier . --write",
     "check": "npx eslint . --fix",
-    "db:migrate": "node src/db/migrate.js",
-    "db:seed": "node src/db/seed.js",
-    "db:setup": "npm run db:migrate && npm run db:seed"
+    "db:migrate": "npx knex migrate:latest",
+    "db:seed": "npx knex seed:run",
+    "db:setup": "npm run db:migrate && npm run db:seed",
+    "db:migrate:make": "npx knex migrate:make",
+    "db:seed:make": "npx knex seed:make"
   },
   "dependencies": {
-    "body-parser": "^1.20.3",
+    "body-parser": "^2.2.2",
     "cors": "^2.8.5",
     "deepmerge": "^4.3.1",
     "dotenv": "^16.4.5",
@@ -29,7 +31,8 @@
     "pg": "^8.11.5",
     "sqlite3": "^5.1.7",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
@@ -40,11 +43,13 @@
   },
   "imports": {
     "#configs/*": "./src/configs/*",
+    "#configs/knex-config.js": "./src/configs/knex-config.js",
     "#controllers/*": "./src/controllers/*",
     "#middlewares": "./src/middlewares/index.js",
     "#middlewares/*": "./src/middlewares/*",
     "#models/*": "./src/models/*",
     "#routers": "./src/routers/index.js",
-    "#routers/*": "./src/routers/*"
+    "#routers/*": "./src/routers/*",
+    "#schemas/*": "./src/schemas/*"
   }
 }

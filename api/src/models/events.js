@@ -83,6 +83,8 @@ export async function countEvents(filters = {}, options = {}) {
  */
 export async function listEvents(filters = {}, options = {}) {
     const {
+        limit,
+        offset,
         orderBy = "id",
         order = "asc",
         trx,
@@ -96,6 +98,14 @@ export async function listEvents(filters = {}, options = {}) {
         orderBy,
         String(order).toLowerCase() === "desc" ? "desc" : "asc"
     );
+
+    if (Number.isInteger(limit) && limit > 0) {
+        qb.limit(limit);
+    }
+
+    if (Number.isInteger(offset) && offset >= 0) {
+        qb.offset(offset);
+    }
 
     return qb;
 }
