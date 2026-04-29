@@ -92,7 +92,26 @@ export async function listEvents(filters = {}, options = {}) {
 
     const qb = baseQuery(trx).select("*");
 
-    // TODO (required project work): apply supported filters
+    const { currency, minPrice, maxPrice, search } = filters;
+
+    if (currency) {
+        qb.where("currency", "=", currency);
+    }
+
+    if (minPrice) {
+        qb.where("price", ">=", minPrice);
+    }
+
+    if (maxPrice) {
+        qb.where("price", "<=", maxPrice);
+    }
+
+    if (search) {
+        qb.where(function () {
+            this.where("title", "ilike", `%${search}%`)
+                .orWhere("description", "ilike", `%${search}%`);
+        });
+    }
 
     qb.orderBy(
         orderBy,
