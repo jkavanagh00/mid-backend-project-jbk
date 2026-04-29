@@ -15,6 +15,10 @@ import { z } from "zod";
 export const EventListQuery = z.object({
     page: z.coerce.number().int().min(0).default(0),
     pageSize: z.coerce.number().int().min(1).max(100).default(20),
+    currency: z.string().length(3).optional(),
+    minPrice: z.coerce.number().min(0).optional(),
+    maxPrice: z.coerce.number().min(0).optional(),
+    search: z.string().trim().optional(),
 });
 
 /**
