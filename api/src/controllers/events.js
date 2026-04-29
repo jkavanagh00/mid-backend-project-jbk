@@ -67,10 +67,12 @@ import {
 export async function getEvents(req, res, next) {
     try {
         // Parse and normalize query params before calculating pagination.
-        const { page, pageSize } = EventListQuery.parse(req.query);
+        const { page, pageSize, currency, minPrice, maxPrice, search } = EventListQuery.parse(req.query);
         const offset = page * pageSize;
 
-        const filters = {}; // TODO (required project work): map req.query filters here
+        const filters = {
+            currency, minPrice, maxPrice, search
+        }; // TODO (required project work): map req.query filters here
 
         const data = await listEvents(filters, {
             limit: pageSize,
