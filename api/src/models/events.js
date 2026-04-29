@@ -109,7 +109,8 @@ export async function listEvents(filters = {}, options = {}) {
     if (search) {
         qb.where(function () {
             this.where("title", "ilike", `%${search}%`)
-                .orWhere("description", "ilike", `%${search}%`);
+                .orWhere("description", "ilike", `%${search}%`)
+                .orWhere("venue", "ilike", `%${search}%`);
         });
     }
 
