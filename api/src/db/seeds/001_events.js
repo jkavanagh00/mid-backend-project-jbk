@@ -7,18 +7,16 @@ export async function seed(knex) {
   await knex("event")
     .insert([
       {
-        id: 1,
         title: "Copenhagen Coffee Crawl",
         venue: "Copenhagen Coffee Society",
         starts_at: "2026-06-23 18:30:00",
         description:
-          "A relaxed Saturday walk between 4 specialty cafés. Includes tasting notes, small pastry, and a guide to brewing styles.",
+          "A relaxed Saturday walk between 4 specialty cafés. Includes tasting notes, small pastry, and brewing styles.",
         price: 100,
         currency: "DKK",
         total_tickets: 50,
       },
       {
-        id: 2,
         title: "After-Work Board Games Night",
         venue: "Norrebro Game Lounge",
         starts_at: "2026-06-25 19:00:00",
@@ -29,7 +27,6 @@ export async function seed(knex) {
         total_tickets: 40,
       },
       {
-        id: 3,
         title: "Beginner Pasta Workshop",
         venue: "Frederiksberg Kitchen Studio",
         starts_at: "2026-06-27 17:30:00",
@@ -40,18 +37,16 @@ export async function seed(knex) {
         total_tickets: 24,
       },
       {
-        id: 4,
         title: "Sunday Park Run & Stretch",
         venue: "Fælledparken Main Gate",
         starts_at: "2026-06-28 09:00:00",
         description:
-          "Easy-paced community run (5K-ish) followed by guided stretching. All levels welcome—walkers included.",
+          "Easy-paced community run (5K-ish) followed bretching. All levels welcome—walkers included.",
         price: 0,
         currency: "DKK",
         total_tickets: 120,
       },
       {
-        id: 5,
         title: "Indie Film Screening: Short Nights",
         venue: "Vesterbro Micro Cinema",
         starts_at: "2026-07-01 20:15:00",
@@ -62,7 +57,6 @@ export async function seed(knex) {
         total_tickets: 60,
       },
       {
-        id: 6,
         title: "Photography Walk: City Lights",
         venue: "Nyhavn Canal Entrance",
         starts_at: "2026-07-03 21:00:00",
@@ -73,7 +67,6 @@ export async function seed(knex) {
         total_tickets: 30,
       },
       {
-        id: 7,
         title: "Bread & Butter Tasting",
         venue: "Amager Bake Lab",
         starts_at: "2026-07-05 11:00:00",
@@ -84,7 +77,6 @@ export async function seed(knex) {
         total_tickets: 36,
       },
       {
-        id: 8,
         title: "Live Jazz Trio at the Loft",
         venue: "Christianshavn Loft Stage",
         starts_at: "2026-07-08 19:00:00",
@@ -95,7 +87,6 @@ export async function seed(knex) {
         total_tickets: 80,
       },
       {
-        id: 9,
         title: "Sourdough Masterclass",
         venue: "Bakery School",
         starts_at: "2026-07-10 10:00:00",
@@ -105,7 +96,6 @@ export async function seed(knex) {
         total_tickets: 20,
       },
       {
-        id: 10,
         title: "Yoga in the Park",
         venue: "Central Park",
         starts_at: "2026-07-12 08:00:00",
@@ -115,7 +105,6 @@ export async function seed(knex) {
         total_tickets: 100,
       },
       {
-        id: 11,
         title: "Wine Tasting Evening",
         venue: "Vineyard Cellar",
         starts_at: "2026-07-14 18:00:00",
@@ -125,7 +114,6 @@ export async function seed(knex) {
         total_tickets: 30,
       },
       {
-        id: 12,
         title: "Coding Bootcamp",
         venue: "Tech Hub",
         starts_at: "2026-07-16 09:00:00",
@@ -135,7 +123,6 @@ export async function seed(knex) {
         total_tickets: 25,
       },
       {
-        id: 13,
         title: "Artisan Cheese Night",
         venue: "Cheese Cave",
         starts_at: "2026-07-18 19:00:00",
@@ -145,7 +132,6 @@ export async function seed(knex) {
         total_tickets: 40,
       },
       {
-        id: 14,
         title: "Open Mic Poetry",
         venue: "Literary Cafe",
         starts_at: "2026-07-20 20:00:00",
@@ -155,7 +141,6 @@ export async function seed(knex) {
         total_tickets: 50,
       },
       {
-        id: 15,
         title: "Street Food Festival",
         venue: "City Square",
         starts_at: "2026-07-22 12:00:00",
@@ -165,7 +150,6 @@ export async function seed(knex) {
         total_tickets: 500,
       },
       {
-        id: 16,
         title: "Photography Basics",
         venue: "Art Studio",
         starts_at: "2026-07-24 15:00:00",
@@ -175,7 +159,6 @@ export async function seed(knex) {
         total_tickets: 18,
       },
       {
-        id: 17,
         title: "Craft Beer Tasting",
         venue: "Brewery Bar",
         starts_at: "2026-07-26 17:00:00",
@@ -185,7 +168,6 @@ export async function seed(knex) {
         total_tickets: 35,
       },
       {
-        id: 18,
         title: "Salsa Dance Night",
         venue: "Dance Hall",
         starts_at: "2026-07-28 20:00:00",
@@ -195,7 +177,6 @@ export async function seed(knex) {
         total_tickets: 60,
       },
       {
-        id: 19,
         title: "Pottery Workshop",
         venue: "Clay Studio",
         starts_at: "2026-07-30 14:00:00",
@@ -205,7 +186,6 @@ export async function seed(knex) {
         total_tickets: 15,
       },
       {
-        id: 20,
         title: "Board Game Marathon",
         venue: "Game Cafe",
         starts_at: "2026-08-01 10:00:00",
@@ -215,7 +195,6 @@ export async function seed(knex) {
         total_tickets: 70,
       },
       {
-        id: 21,
         title: "Vegan Cooking Demo",
         venue: "Green Kitchen",
         starts_at: "2026-08-03 18:00:00",
@@ -225,7 +204,6 @@ export async function seed(knex) {
         total_tickets: 28,
       },
       {
-        id: 22,
         title: "Film Quiz Night",
         venue: "Cinema Bar",
         starts_at: "2026-08-05 19:30:00",
@@ -235,9 +213,8 @@ export async function seed(knex) {
         total_tickets: 45,
       },
       {
-        id: 23,
         title: "Jazz Brunch",
-        venue: "Riverside Cafe",
+        venue: "Rie",
         starts_at: "2026-08-07 11:00:00",
         description: "Live jazz and brunch buffet.",
         price: 210,
@@ -245,7 +222,6 @@ export async function seed(knex) {
         total_tickets: 32,
       },
       {
-        id: 24,
         title: "Coding for Kids",
         venue: "Library Lab",
         starts_at: "2026-08-09 13:00:00",
@@ -255,7 +231,6 @@ export async function seed(knex) {
         total_tickets: 20,
       },
       {
-        id: 25,
         title: "Summer Book Swap",
         venue: "Community Center",
         starts_at: "2026-08-11 16:00:00",
@@ -265,7 +240,6 @@ export async function seed(knex) {
         total_tickets: 80,
       },
       {
-        id: 26,
         title: "Night Market",
         venue: "Old Town",
         starts_at: "2026-08-13 18:00:00",
@@ -275,7 +249,6 @@ export async function seed(knex) {
         total_tickets: 200,
       },
       {
-        id: 27,
         title: "Trivia Challenge",
         venue: "Pub Quiz Hall",
         starts_at: "2026-08-15 20:00:00",
@@ -285,7 +258,6 @@ export async function seed(knex) {
         total_tickets: 60,
       },
       {
-        id: 28,
         title: "Painting & Wine",
         venue: "Art Loft",
         starts_at: "2026-08-17 18:30:00",
@@ -295,7 +267,6 @@ export async function seed(knex) {
         total_tickets: 22,
       },
       {
-        id: 29,
         title: "Sunday Farmers Market",
         venue: "Market Square",
         starts_at: "2026-08-19 09:00:00",
@@ -305,7 +276,6 @@ export async function seed(knex) {
         total_tickets: 300,
       },
       {
-        id: 30,
         title: "Chess Tournament",
         venue: "Chess Club",
         starts_at: "2026-08-21 10:00:00",
@@ -315,7 +285,6 @@ export async function seed(knex) {
         total_tickets: 40,
       },
       {
-        id: 31,
         title: "Karaoke Night",
         venue: "Music Bar",
         starts_at: "2026-08-23 21:00:00",
@@ -325,7 +294,6 @@ export async function seed(knex) {
         total_tickets: 55,
       },
       {
-        id: 32,
         title: "Baking for Beginners",
         venue: "Bakery School",
         starts_at: "2026-08-25 15:00:00",
@@ -334,7 +302,5 @@ export async function seed(knex) {
         currency: "DKK",
         total_tickets: 18,
       },
-    ])
-    .onConflict("id")
-    .merge();
+    ]);
 }
