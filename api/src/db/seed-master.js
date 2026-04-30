@@ -9,6 +9,7 @@ import knex from "#configs/database.js";
 
 (async () => {
   try {
+
     // Delete in dependency order (most dependent first)
     await knex("cart_item").del();
     await knex("booking_item").del();
@@ -16,6 +17,15 @@ import knex from "#configs/database.js";
     await knex("booking").del();
     await knex("event").del();
     await knex("account").del();
+
+    // Reset sequences for tables with auto-incrementing primary keys
+    // (PostgreSQL syntax)
+    await knex.raw("ALTER SEQUENCE account_id_seq RESTART WITH 1");
+    await knex.raw("ALTER SEQUENCE event_id_seq RESTART WITH 1");
+    await knex.raw("ALTER SEQUENCE booking_id_seq RESTART WITH 1");
+    await knex.raw("ALTER SEQUENCE cart_id_seq RESTART WITH 1");
+    await knex.raw("ALTER SEQUENCE booking_item_id_seq RESTART WITH 1");
+    await knex.raw("ALTER SEQUENCE cart_item_id_seq RESTART WITH 1");
 
     // Run all individual seed files (order: account, event, booking, booking_item, cart, cart_item)
     await import("./seeds/002_accounts.js").then(m => m.seed(knex));
