@@ -160,11 +160,35 @@ export async function findEventById(id, { trx } = {}) {
  *
  * If optional admin functionality is added, this placeholder can be replaced
  * with a real implementation.
+ * 
+ * @param {string} title
+ * @param {string} venue
+ * @param {string} starts_at
+ * @param {string} description
+ * @param {number} price
+ * @param {string} currency
+ * @param {number} total_tickets
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ * 
+ * @return {Promise<Object>} The created event
  */
-export async function createEvent() {
-    throw new Error(
-        "Optional placeholder: createEvent is intentionally not implemented in the base skeleton"
-    );
+export async function createEvent(eventData, options = {}) {
+    const { title, venue, starts_at, description, price, currency, total_tickets } = eventData;
+
+    const createdEvent = await baseQuery(options.trx)
+        .insert({
+            title,
+            venue,
+            starts_at,
+            description,
+            price,
+            currency,
+            total_tickets
+        })
+        .returning("*");
+
+    return createdEvent[0];
 }
 
 /**

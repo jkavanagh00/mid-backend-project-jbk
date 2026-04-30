@@ -137,11 +137,16 @@ export async function postEvent(req, res, next) {
     // OPTIONAL TODO: implement this handler only if optional scope is taken on
     try {
         // Parse the request body before handing data to the model layer.
-        await createEvent(EventInput.parse(req.body));
+        const newEvent = await createEvent(EventInput.parse(req.body));
 
-        return res.status(501).json({
-            error:
-                "Optional placeholder: postEvent is intentionally not implemented in the base skeleton",
+        if (!newEvent) {
+            return res.status(500).json({
+                error: "Failed to create event",
+            });
+        }
+        
+        res.status(201).json({
+            data: newEvent,
         });
     } catch (error) {
         next(error);
