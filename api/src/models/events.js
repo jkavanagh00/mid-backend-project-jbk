@@ -199,11 +199,19 @@ export async function createEvent(eventData, options = {}) {
  *
  * It is NOT required for the base trainee project unless optional/admin scope
  * is added.
+ * @param {number} id
+ * @param {Object} updateData
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ * 
+ * @returns {Promise<Object|null>} The updated event
  */
-export async function updateEvent() {
-    throw new Error(
-        "Optional placeholder: updateEvent is intentionally not implemented in the base skeleton"
-    );
+export async function updateEvent(id, updateData, options = {}) {
+    const updated = await baseQuery(options.trx)
+        .where({ id })
+        .update(updateData)
+        .returning("*");
+    return updated[0] ?? null;
 }
 
 /**

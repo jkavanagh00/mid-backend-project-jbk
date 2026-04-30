@@ -168,12 +168,15 @@ export async function patchEvent(req, res, next) {
         const { id } = EventIdParams.parse(req.params);
         const eventPatchInput = EventPatchInput.parse(req.body);
 
-        await updateEvent(id, eventPatchInput);
+        const updatedEvent = await updateEvent(id, eventPatchInput);
 
-        return res.status(501).json({
-            error:
-                "Optional placeholder: patchEvent is intentionally not implemented in the base skeleton",
-        });
+        if (!updatedEvent) {
+            return res.status(404).json({
+                error: "Event not found",
+            });
+        }
+
+        return res.status(200).json({ data: updatedEvent });
     } catch (error) {
         next(error);
     }
