@@ -15,6 +15,10 @@ import { z } from "zod";
 export const EventListQuery = z.object({
     page: z.coerce.number().int().min(0).default(0),
     pageSize: z.coerce.number().int().min(1).max(100).default(20),
+    currency: z.string().length(3).optional(),
+    minPrice: z.coerce.number().min(0).optional(),
+    maxPrice: z.coerce.number().min(0).optional(),
+    search: z.string().trim().optional(),
 });
 
 /**
@@ -49,13 +53,16 @@ export const EventIdParams = z.object({
  */
 export const EventInput = z.object({
     title: z.string().trim().min(1, "title is required"),
+    venue: z.string().trim().min(1, "title is required"),
+    starts_at: z.string().trim().min(1, "starts_at is required"),
+    description: z.string().trim().optional(),
     price: z.coerce.number().min(0, "price must be a non-negative number"),
     currency: z
         .string()
         .trim()
         .toUpperCase()
         .length(3, "currency must be a 3-letter code"),
-    description: z.string().trim().optional(),
+    total_tickets: z.coerce.number().int().positive("total_tickets must be a positive integer"),
 });
 
 /**

@@ -15,19 +15,13 @@ export async function up(knex) {
     t.unique(["account_id"], {
       indexName: "cart_one_active_per_account_idx",
       useConstraint: false,
-      predicate: knex
-        .queryBuilder()
-        .where("status", "active")
-        .whereNotNull("account_id"),
+      predicate: knex.queryBuilder().whereRaw("status = 'active' AND account_id IS NOT NULL"),
     });
 
     t.unique(["guest_token"], {
       indexName: "cart_one_active_per_guest_idx",
       useConstraint: false,
-      predicate: knex
-        .queryBuilder()
-        .where("status", "active")
-        .whereNotNull("guest_token"),
+      predicate: knex.queryBuilder().whereRaw("status = 'active' AND guest_token IS NOT NULL"),
     });
   });
 }

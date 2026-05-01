@@ -92,7 +92,27 @@ export async function listEvents(filters = {}, options = {}) {
 
     const qb = baseQuery(trx).select("*");
 
-    // TODO (required project work): apply supported filters
+    const { currency, minPrice, maxPrice, search } = filters;
+
+    if (currency) {
+        qb.where("currency", "=", currency);
+    }
+
+    if (minPrice) {
+        qb.where("price", ">=", minPrice);
+    }
+
+    if (maxPrice) {
+        qb.where("price", "<=", maxPrice);
+    }
+
+    if (search) {
+        qb.where(function () {
+            this.where("title", "ilike", `%${search}%`)
+                .orWhere("description", "ilike", `%${search}%`)
+                .orWhere("venue", "ilike", `%${search}%`);
+        });
+    }
 
     qb.orderBy(
         orderBy,
@@ -140,11 +160,35 @@ export async function findEventById(id, { trx } = {}) {
  *
  * If optional admin functionality is added, this placeholder can be replaced
  * with a real implementation.
+ * 
+ * @param {string} title
+ * @param {string} venue
+ * @param {string} starts_at
+ * @param {string} description
+ * @param {number} price
+ * @param {string} currency
+ * @param {number} total_tickets
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ * 
+ * @return {Promise<Object>} The created event
  */
-export async function createEvent() {
-    throw new Error(
-        "Optional placeholder: createEvent is intentionally not implemented in the base skeleton"
-    );
+export async function createEvent(eventData, options = {}) {
+    const { title, venue, starts_at, description, price, currency, total_tickets } = eventData;
+
+    const createdEvent = await baseQuery(options.trx)
+        .insert({
+            title,
+            venue,
+            starts_at,
+            description,
+            price,
+            currency,
+            total_tickets
+        })
+        .returning("*");
+
+    return createdEvent[0];
 }
 
 /**
@@ -155,11 +199,19 @@ export async function createEvent() {
  *
  * It is NOT required for the base trainee project unless optional/admin scope
  * is added.
+ * @param {number} id
+ * @param {Object} updateData
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ * 
+ * @returns {Promise<Object|null>} The updated event
  */
-export async function updateEvent() {
-    throw new Error(
-        "Optional placeholder: updateEvent is intentionally not implemented in the base skeleton"
-    );
+export async function updateEvent(id, updateData, options = {}) {
+    const updated = await baseQuery(options.trx)
+        .where({ id })
+        .update(updateData)
+        .returning("*");
+    return updated[0] ?? null;
 }
 
 /**
@@ -169,9 +221,18 @@ export async function updateEvent() {
  * be placed in the same MVC model file.
  *
  * It is NOT part of the required trainee implementation in the default scope.
+ * 
+ * @param {number|string} id
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ *
+ * @returns {Promise<Object|null>}
  */
-export async function deleteEvent() {
-    throw new Error(
-        "Optional placeholder: deleteEvent is intentionally not implemented in the base skeleton"
-    );
+export async function deleteEvent(id, options = {}) {
+    const deleted = await baseQuery(options.trx)
+        .where({ id })
+        .del()
+        .returning("*");
+
+    return deleted[0] ?? null;
 }
