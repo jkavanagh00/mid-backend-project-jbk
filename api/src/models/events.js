@@ -221,9 +221,18 @@ export async function updateEvent(id, updateData, options = {}) {
  * be placed in the same MVC model file.
  *
  * It is NOT part of the required trainee implementation in the default scope.
+ * 
+ * @param {number|string} id
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ *
+ * @returns {Promise<Object|null>}
  */
-export async function deleteEvent() {
-    throw new Error(
-        "Optional placeholder: deleteEvent is intentionally not implemented in the base skeleton"
-    );
+export async function deleteEvent(id, options = {}) {
+    const deleted = await baseQuery(options.trx)
+        .where({ id })
+        .del()
+        .returning("*");
+
+    return deleted[0] ?? null;
 }
