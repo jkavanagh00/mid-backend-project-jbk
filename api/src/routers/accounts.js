@@ -6,8 +6,11 @@ import {
     patchAccount,
     removeAccount,
 } from "#controllers/accounts.js";
+import { authenticateJWT } from "#middlewares/auth.js";
 
 const accountsRouter = express.Router();
+
+accountsRouter.use(authenticateJWT);
 
 accountsRouter.get("/", getAccounts);
 

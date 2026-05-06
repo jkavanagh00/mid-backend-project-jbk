@@ -6,6 +6,7 @@ import {
     patchEvent,
     removeEvent,
 } from "#controllers/events.js";
+import { authenticateJWT } from "#middlewares/auth.js";
 
 const eventsRouter = express.Router();
 
@@ -139,7 +140,7 @@ eventsRouter.get("/:id", getEventById);
  *       501:
  *         description: Not implemented in base skeleton
  */
-eventsRouter.post("/", postEvent);
+eventsRouter.post("/", authenticateJWT, postEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -162,7 +163,7 @@ eventsRouter.post("/", postEvent);
  *       501:
  *         description: Not implemented in base skeleton
  */
-eventsRouter.patch("/:id", patchEvent);
+eventsRouter.patch("/:id", authenticateJWT, patchEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -185,6 +186,6 @@ eventsRouter.patch("/:id", patchEvent);
  *       501:
  *         description: Not implemented in base skeleton
  */
-eventsRouter.delete("/:id", removeEvent);
+eventsRouter.delete("/:id", authenticateJWT, removeEvent);
 
 export default eventsRouter;
