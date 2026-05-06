@@ -8,8 +8,8 @@ import { z } from "zod";
 export const AccountListQuery = z.object({
     page: z.coerce.number().int().min(0).default(0),
     pageSize: z.coerce.number().int().min(1).max(100).default(20),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional(),
+    createdAt: z.string().datetime().optional(),
+    updatedAt: z.string().datetime().optional(),
     search: z.string().trim().optional(),
 })
 
@@ -18,7 +18,7 @@ export const AccountListQuery = z.object({
  * - returns a normalized object such as { id: 12 } when valid
  * - throws a ZodError if the value cannot be parsed into a positive integer
  */
-export const EventIdParams = z.object({
+export const AccountIdParams = z.object({
     id: z.coerce.number().int().positive("id must be a positive integer"),
 });
 
@@ -29,7 +29,7 @@ export const EventIdParams = z.object({
  */
 export const AccountInput = z.object({
     name: z.string().trim().min(3, "name must have at least 3 characters"),
-    email: z.email(),
+    email: z.string().email(),
     phone: z.number().min(5, "phone number must have at least 5 digits").max(15, "phone number must not exceed 15 digits"),
     password: z.string().trim().min(8, "password must have at least 8 characters"),
 });
