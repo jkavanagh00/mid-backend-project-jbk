@@ -10,3 +10,5 @@ export const CartItemInput = z.object({
     quantity: z.coerce.number().int().min(1, "Quantity must be at least 1"),
     unitPrice: z.coerce.number().positive("Unit price must be a positive number"),
 });
+
+export const CartItemUpdateInput = CartItemInput.partial();
