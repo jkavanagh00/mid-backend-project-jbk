@@ -96,7 +96,7 @@ export async function listAccounts(filters = {}, options = {}) {
  *
  * @returns {Promise<Object|null>}
  */
-export async function findAccountById(id, trx = {}) {
+export async function findAccountById(id, { trx } = {}) {
   const row = await baseQuery(trx).where({ id }).first();
 
   return row ?? null;
