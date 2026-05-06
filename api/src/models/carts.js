@@ -9,7 +9,12 @@ function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
-export async function findCartByAccountId(id, trx = {}) {
+export async function findCartByAccountId(id, trx = db) {
   const cart = await baseQuery(trx).where("account_id", "=", id).first();
-  return cart ?? null;
+  if (!cart) {
+    return null;
+  }
+  const cartItems = await trx("cart_item").where("cart_id", "=", cart.id).select("*");
+  cart.items = cartItems;
+  return cart;
 }
