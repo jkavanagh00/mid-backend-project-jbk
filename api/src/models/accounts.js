@@ -138,7 +138,7 @@ export async function createAccount(accountData, options = {}) {
  * 
  * @returns {Promise<Object|null>} 
  */
-export async function updateEvent(id, updateData, options = {}) {
+export async function updateAccount(id, updateData, options = {}) {
     const updated = await baseQuery(options.trx)
         .where({ id })
         .update(updateData)
