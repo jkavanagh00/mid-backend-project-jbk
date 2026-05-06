@@ -1,0 +1,63 @@
+import {
+  createAccount,
+  findAccountByEmail,
+} from "#models/accounts.js";
+import {
+  AccountInput,
+} from "#schemas/accounts.js";
+import { LoginParams } from "#schemas/auth.js";
+import bcrypt from "bcrypt";
+import jsonwebtoken from "jsonwebtoken";
+
+export async function registerNewAccount(req, res, next) {
+  try {
+    const newAccount = AccountInput.parse(req.body);
+    const { name, phone, email, password } = newAccount;
+
+    const existingAccount = await findAccountByEmail(email)
+    if (existingAccount) {
+      return res.status(409).json({ error: "Email is already in use" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    newAccount["password"] = hashedPassword;
+
+    const createdAccount = await createAccount(newAccount);
+
+    if (!createdAccount) {
+      return res.status(500).json({
+        error: "Failed to create account",
+      });
+    }
+    res.status(201).json({ message: "Account created successfully" });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function login(req, res, next) {
+  try {
+    const loginAttempt = LoginParams.parse(req.body);
+    const { email, password } = loginAttempt;
+
+    const account = await findAccountByEmail(email);
+
+    if (!account) {
+      return res.status(404).json({ message: "Account does not exist" });
+    }
+
+    const isMatch = await bcrypt.compare(password, account.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const payload = { id: account.id, email: account.email };
+    const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ message: "Login successful", token });
+  } catch (error) {
+    next(error);
+  }
+}

@@ -88,6 +88,21 @@ export async function listAccounts(filters = {}, options = {}) {
 }
 
 /**
+ * Find a single account by email.
+ *
+ * @param {string} email
+ * @param {Object} [options={}]
+ * @param {import("knex").Knex} [options.trx]
+ *
+ * @returns {Promise<Object|null>}
+ */
+export async function findAccountByEmail(email, { trx } = {}) {
+  const row = await baseQuery(trx).where({ email }).first();
+
+  return row ?? null;
+}
+
+/**
  * Find a single account by id.
  *
  * @param {number|string} id
