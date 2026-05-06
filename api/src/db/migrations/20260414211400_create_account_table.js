@@ -7,7 +7,6 @@ export async function up(knex) {
         t.string("name").notNullable();
         t.string("email").notNullable().unique();
         t.string("phone", 20);
-        t.string("password").notNullable();
         t.timestamps(true, true);
     });
 }

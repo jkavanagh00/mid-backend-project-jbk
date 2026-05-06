@@ -30,11 +30,10 @@ export async function up(knex) {
  * @param {import("knex").Knex} knex
  */
 export async function down(knex) {
-  await knex.schema.alterTable("cart", (t) => {
-    t.dropUnique(["guest_token"], "cart_one_active_per_guest_idx");
-    t.dropUnique(["account_id"], "cart_one_active_per_account_idx");
-    t.dropChecks(["cart_owner_xor_check"]);
-  });
+
+  await knex.raw('ALTER TABLE cart DROP CONSTRAINT IF EXISTS cart_one_active_per_guest_idx');
+  await knex.raw('ALTER TABLE cart DROP CONSTRAINT IF EXISTS cart_one_active_per_account_idx');
+  await knex.raw('ALTER TABLE cart DROP CONSTRAINT IF EXISTS cart_owner_xor_check');
 
   // Remove guest-owned carts before restoring NOT NULL on account_id.
   await knex("cart_item")
