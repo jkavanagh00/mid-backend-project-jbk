@@ -1,10 +1,9 @@
 import {
   createAccount,
   findAccountByEmail,
+  findAccountById,
 } from "#models/accounts.js";
-import {
-  AccountInput,
-} from "#schemas/accounts.js";
+import { AccountInput, AccountIdParams } from "#schemas/accounts.js";
 import { LoginParams } from "#schemas/auth.js";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
@@ -14,7 +13,7 @@ export async function registerNewAccount(req, res, next) {
     const newAccount = AccountInput.parse(req.body);
     const { name, phone, email, password } = newAccount;
 
-    const existingAccount = await findAccountByEmail(email)
+    const existingAccount = await findAccountByEmail(email);
     if (existingAccount) {
       return res.status(409).json({ error: "Email is already in use" });
     }
@@ -59,5 +58,18 @@ export async function login(req, res, next) {
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     next(error);
+  }
+}
+
+export async function showOwnAccount(req, res, next) {
+  try {
+    const { id } = req.user;
+    const account = await findAccountById(id);
+    if (!account) {
+      return res.status(404).json({ error: "Account not found" });
+    }
+    res.json({ account });
+  } catch (error) {
+    next(err);
   }
 }
