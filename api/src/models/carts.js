@@ -10,12 +10,6 @@ function baseQuery(trx = db) {
 }
 
 export async function findCartByAccountId(id, trx = {}) {
-    try {
-        const cart = await baseQuery(trx)
-            .where("account_id", "=", id)
-            .first();
-        return cart;
-    } catch (error) {
-        next(error);
-    };    
+  const cart = await baseQuery(trx).where("account_id", "=", id).first();
+  return cart ?? null;
 }
