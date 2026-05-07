@@ -8,8 +8,6 @@ import { authenticateJWT } from "#middlewares/auth.js";
 
 const cartsRouter = express.Router();
 
-
-/**
 /**
  * @swagger
  * /api/carts/me:
@@ -49,8 +47,6 @@ const cartsRouter = express.Router();
  */
 cartsRouter.get("/me", authenticateJWT, getCartByAccountId);
 
-
-/**
 /**
  * @swagger
  * /api/carts/items:
@@ -100,7 +96,6 @@ cartsRouter.get("/me", authenticateJWT, getCartByAccountId);
 cartsRouter.post("/items", authenticateJWT, addItemToCart);
 
 
-/**
 /**
  * @swagger
  * /api/carts/items/{id}:
