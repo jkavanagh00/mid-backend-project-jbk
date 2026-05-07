@@ -1,4 +1,4 @@
-import { json } from "body-parser";
+import json from "body-parser";
 import jsonwebtoken from "jsonwebtoken";
 import crypto from "crypto";
 

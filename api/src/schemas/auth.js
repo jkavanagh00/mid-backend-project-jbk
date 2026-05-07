@@ -1,4 +1,4 @@
-export { z } from "zod";
+import { z } from "zod";
 
 export const LoginParams = z.object({
   email: z.string().email(),
