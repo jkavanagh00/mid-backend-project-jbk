@@ -55,13 +55,6 @@ export async function addItemToCart(req, res, next) {
       return res.status(404).json({ message: "Event not found" });
     }
 
-    const { eventId } = addItemRequest;
-    const event = await findEventById(eventId);
-
-    if (!event) {
-      return res.status(404).json({ message: "Event not found" });
-    }
-
     await insertCartItem(
       cart.id,
       eventId,
