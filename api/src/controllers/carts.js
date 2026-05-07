@@ -8,11 +8,20 @@ import { findEventById } from "#models/events.js";
 
 export async function getCartByAccountId(req, res, next) {
   try {
-    const { id } = req.user;
-    const cart = await findCartByAccountId(id);
+    let cart;
+
+    if (req.user.id) {
+      const { id } = req.user;
+      cart = await findCartByAccountId(id);
+    } else if (req.user.guestId) {
+    const { guestId } = req.user;
+      cart = await findCartByAccountId(guestId);
+    }
+
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
+    
     res.status(200).json(cart);
   } catch (error) {
     next(error);
