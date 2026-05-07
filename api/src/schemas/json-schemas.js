@@ -4,15 +4,15 @@ import {
   AccountIdParams,
   AccountInput,
   AccountPatchInput,
-} from "./accounts";
-import { LoginParams } from "./auth";
-import { CartInput, CartItemInput, CartItemUpdateInput } from "./carts";
+} from "#schemas/accounts.js";
+import { LoginParams } from "#schemas/auth.js";
+import { CartInput, CartItemInput, CartItemUpdateInput } from "#schemas/carts.js";
 import {
   EventListQuery,
   EventIdParams,
   EventInput,
   EventPatchInput,
-} from "./events";
+} from "#schemas/events.js";
 
 const schemas = {
   AccountListQuery: zodToJsonSchema(AccountListQuery, "AccountListQuery"),
