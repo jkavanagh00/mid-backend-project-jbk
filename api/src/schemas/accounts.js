@@ -47,3 +47,14 @@ export const AccountInput = z.object({
  * - throws a ZodError if any provided field is invalid
  */
 export const AccountPatchInput = AccountInput.partial();
+
+/**
+ * AccountOutput.parse(account):
+ * - returns a validated and normalized object when valid
+ * - throws a ZodError when a field is missing, has the wrong type, or fails a rule
+ */
+export const AccountOutput = AccountInput.extend({
+  id: z.number().int().positive(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+});
