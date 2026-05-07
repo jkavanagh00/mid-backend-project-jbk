@@ -10,7 +10,7 @@ function baseQuery(trx = db) {
 }
 
 export async function findCartByAccountId(id, trx = db) {
-  const cart = await baseQuery(trx).where("account_id", "=", id).first();
+  const cart = await baseQuery(trx).where("account_id", "=", id).orWhere("guest_token", "=", id).first();
   if (!cart) {
     return null;
   }
