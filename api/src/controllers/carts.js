@@ -21,7 +21,7 @@ export async function getCartByAccountId(req, res, next) {
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    
+
     res.status(200).json(cart);
   } catch (error) {
     next(error);
@@ -87,3 +87,31 @@ export async function updateCartItem(req, res, next) {
     next(error);
   } 
 }
+
+export async function postCart(req, res, next) {
+  try {
+    const newCartInput = CartInput.parse(req.body); 
+    let user;
+
+    if (req.user.id) {
+      user = { 
+        id: req.user.id,
+        guest: false
+       };
+    } else if (req.user.guestId) {
+      user = { 
+        id: req.user.guestId, 
+        guest: true };
+    }
+
+    const cart = await createCart(user);
+    if (!cart) {
+      return res.status(500).json({ message: "Failed to create cart" });
+    }
+
+    res.status(201).json(cart);
+  } catch (error) {
+    next(error);
+  }
+}
+

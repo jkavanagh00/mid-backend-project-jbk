@@ -18,3 +18,13 @@ export async function findCartByAccountId(id, trx = db) {
   cart.items = cartItems;
   return cart;
 }
+
+export async function createCart(user, trx = db) {
+  let cart;
+  if (user.guest) {
+    [cart] = await baseQuery(trx).insert({ guest_token: user.id }).returning("*");
+  } else {
+    [cart] = await baseQuery(trx).insert({ account_id: user.id }).returning("*");
+  }
+  return cart;
+}
