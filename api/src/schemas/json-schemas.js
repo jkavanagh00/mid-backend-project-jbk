@@ -15,18 +15,18 @@ import {
 } from "#schemas/events.js";
 
 const schemas = {
-  AccountListQuery: zodToJsonSchema(AccountListQuery, "AccountListQuery"),
-  AccountIdParams: zodToJsonSchema(AccountIdParams, "AccountIdParams"),
-  AccountInput: zodToJsonSchema(AccountInput, "AccountInput"),
-  AccountPatchInput: zodToJsonSchema(AccountPatchInput, "AccountPatchInput"),
-  LoginParams: zodToJsonSchema(LoginParams, "LoginParams"),
-  CartInput: zodToJsonSchema(CartInput, "CartInput"),
-  CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput"),
-  CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput"),
-  EventListQuery: zodToJsonSchema(EventListQuery, "EventListQuery"),
-  EventIdParams: zodToJsonSchema(EventIdParams, "EventIdParams"),
-  EventInput: zodToJsonSchema(EventInput, "EventInput"),
-  EventPatchInput: zodToJsonSchema(EventPatchInput, "EventPatchInput"),
+  AccountListQuery: zodToJsonSchema(AccountListQuery, "AccountListQuery").definitions,
+  AccountIdParams: zodToJsonSchema(AccountIdParams, "AccountIdParams").definitions,
+  AccountInput: zodToJsonSchema(AccountInput, "AccountInput").definitions,
+  AccountPatchInput: zodToJsonSchema(AccountPatchInput, "AccountPatchInput").definitions,
+  LoginParams: zodToJsonSchema(LoginParams, "LoginParams").definitions,
+  CartInput: zodToJsonSchema(CartInput, "CartInput").definitions,
+  CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions,
+  CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput").definitions,
+  EventListQuery: zodToJsonSchema(EventListQuery, "EventListQuery").definitions,
+  EventIdParams: zodToJsonSchema(EventIdParams, "EventIdParams").definitions,
+  EventInput: zodToJsonSchema(EventInput, "EventInput").definitions,
+  EventPatchInput: zodToJsonSchema(EventPatchInput, "EventPatchInput").definitions,
 };
 
 export default schemas;
