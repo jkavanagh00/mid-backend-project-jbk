@@ -15,18 +15,18 @@ import {
 } from "#schemas/events.js";
 
 const schemas = {
-  AccountListQuery: zodToJsonSchema(AccountListQuery, "AccountListQuery").definitions,
-  AccountIdParams: zodToJsonSchema(AccountIdParams, "AccountIdParams").definitions,
-  AccountInput: zodToJsonSchema(AccountInput, "AccountInput").definitions,
-  AccountPatchInput: zodToJsonSchema(AccountPatchInput, "AccountPatchInput").definitions,
-  LoginParams: zodToJsonSchema(LoginParams, "LoginParams").definitions,
-  CartInput: zodToJsonSchema(CartInput, "CartInput").definitions,
-  CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions,
-  CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput").definitions,
-  EventListQuery: zodToJsonSchema(EventListQuery, "EventListQuery").definitions,
-  EventIdParams: zodToJsonSchema(EventIdParams, "EventIdParams").definitions,
-  EventInput: zodToJsonSchema(EventInput, "EventInput").definitions,
-  EventPatchInput: zodToJsonSchema(EventPatchInput, "EventPatchInput").definitions,
+  AccountListQuery: zodToJsonSchema(AccountListQuery, "AccountListQuery").definitions.AccountListQuery,
+  AccountIdParams: zodToJsonSchema(AccountIdParams, "AccountIdParams").definitions.AccountIdParams,
+  AccountInput: zodToJsonSchema(AccountInput, "AccountInput").definitions.AccountInput,
+  AccountPatchInput: zodToJsonSchema(AccountPatchInput, "AccountPatchInput").definitions.AccountPatchInput,
+  LoginParams: zodToJsonSchema(LoginParams, "LoginParams").definitions.LoginParams,
+  CartInput: zodToJsonSchema(CartInput, "CartInput").definitions.CartInput,
+  CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions.CartItemInput,
+  CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput").definitions.CartItemUpdateInput,
+  EventListQuery: zodToJsonSchema(EventListQuery, "EventListQuery").definitions.EventListQuery,
+  EventIdParams: zodToJsonSchema(EventIdParams, "EventIdParams").definitions.EventIdParams,
+  EventInput: zodToJsonSchema(EventInput, "EventInput").definitions.EventInput,
+  EventPatchInput: zodToJsonSchema(EventPatchInput, "EventPatchInput").definitions.EventPatchInput,
 };
 
 export default schemas;
