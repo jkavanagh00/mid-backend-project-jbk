@@ -7,6 +7,6 @@ const apiRouter = express.Router();
 
 apiRouter.use("/events", eventsRouter);
 apiRouter.use("/accounts", accountsRouter);
-apiRouter.use("/cart", cartsRouter);
+apiRouter.use("/carts", cartsRouter);
 
 export default apiRouter;
