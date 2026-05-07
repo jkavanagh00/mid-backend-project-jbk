@@ -4,6 +4,7 @@ import {
   AccountIdParams,
   AccountInput,
   AccountPatchInput,
+  AccountOutput,
 } from "#schemas/accounts.js";
 import { LoginParams } from "#schemas/auth.js";
 import { CartInput, CartItemInput, CartItemUpdateInput } from "#schemas/carts.js";
@@ -19,6 +20,7 @@ const schemas = {
   AccountIdParams: zodToJsonSchema(AccountIdParams, "AccountIdParams").definitions.AccountIdParams,
   AccountInput: zodToJsonSchema(AccountInput, "AccountInput").definitions.AccountInput,
   AccountPatchInput: zodToJsonSchema(AccountPatchInput, "AccountPatchInput").definitions.AccountPatchInput,
+  AccountOutput: zodToJsonSchema(AccountOutput, "AccountOutput").definitions.AccountOutput,
   LoginParams: zodToJsonSchema(LoginParams, "LoginParams").definitions.LoginParams,
   CartInput: zodToJsonSchema(CartInput, "CartInput").definitions.CartInput,
   CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions.CartItemInput,
