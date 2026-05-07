@@ -9,21 +9,32 @@ function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
-export async function insertCartItem(cartId, eventId, quantity, unitPrice, trx = db) {
-  const item = await baseQuery(trx).insert({
-    cart_id,
-    event_id,
-    quantity,
-    unit_price,
-  }).returning("*");
+export async function insertCartItem(
+  cartId,
+  eventId,
+  quantity,
+  unitPrice,
+  trx = db,
+) {
+  const item = await baseQuery(trx)
+    .insert({
+      cart_id,
+      event_id,
+      quantity,
+      unit_price,
+    })
+    .returning("*");
 
-  return item[0];  
+  return item[0];
 }
 
 export async function updateCartItemQuantity(cartItemId, quantity, trx = db) {
-  const item = await baseQuery(trx).where("id", "=", cartItemId).update({
-    quantity,
-  }).returning("*");
+  const item = await baseQuery(trx)
+    .where("id", "=", cartItemId)
+    .update({
+      quantity,
+    })
+    .returning("*");
 
   return item[0];
 }

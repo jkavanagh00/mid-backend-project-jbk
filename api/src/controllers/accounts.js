@@ -55,12 +55,12 @@ export async function getAccountById(req, res, next) {
     const account = await findAccountById(id);
 
     if (!account) {
-        return res.status(404).json({
-            error: "Account not found",
-        })
+      return res.status(404).json({
+        error: "Account not found",
+      });
     }
 
-    res.json({ data: account })
+    res.json({ data: account });
   } catch (error) {
     next(error);
   }
@@ -108,7 +108,6 @@ export async function patchAccount(req, res, next) {
 
 export async function removeAccount(req, res, next) {
   try {
-
     const { id } = AccountIdParams.parse(req.params);
 
     const deletedAccount = await deleteAccount(id);

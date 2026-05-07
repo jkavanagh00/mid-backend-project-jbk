@@ -1,10 +1,10 @@
 import express from "express";
 import {
-    getAccounts,
-    getAccountById,
-    postAccount,
-    patchAccount,
-    removeAccount,
+  getAccounts,
+  getAccountById,
+  postAccount,
+  patchAccount,
+  removeAccount,
 } from "#controllers/accounts.js";
 import { showOwnAccount } from "#controllers/auth.js";
 import { authenticateJWT } from "#middlewares/auth.js";

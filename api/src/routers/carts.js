@@ -1,8 +1,8 @@
 import express from "express";
 import {
-    getCartByAccountId,
-    addItemToCart,
-    updateCartItem,
+  getCartByAccountId,
+  addItemToCart,
+  updateCartItem,
 } from "#controllers/carts.js";
 import { authenticateJWT } from "#middlewares/auth.js";
 

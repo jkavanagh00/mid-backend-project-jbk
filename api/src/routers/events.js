@@ -1,10 +1,10 @@
 import express from "express";
 import {
-    getEvents,
-    getEventById,
-    postEvent,
-    patchEvent,
-    removeEvent,
+  getEvents,
+  getEventById,
+  postEvent,
+  patchEvent,
+  removeEvent,
 } from "#controllers/events.js";
 import { authenticateJWT } from "#middlewares/auth.js";
 
@@ -98,12 +98,6 @@ const eventsRouter = express.Router();
 eventsRouter.get("/", getEvents);
 
 /**
- * OPTIONAL ROUTE PLACEHOLDER
- *
- * Demonstrates how a "get single resource" endpoint would be added.
- * Not required in the base trainee assignment unless optional scope
- * is implemented.
- *
  * @swagger
  * /api/events/{id}:
  *   get:

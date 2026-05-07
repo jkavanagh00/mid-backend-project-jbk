@@ -119,62 +119,62 @@ export async function findAccountById(id, { trx } = {}) {
 
 /**
  * Create a new account.
- * 
+ *
  * @param {string} name
- * @param {string} email    
+ * @param {string} email
  * @param {string} phone
  * @param {string} password
  * @param {Object} [options={}]
- * 
- * @returns {Promise<Object|null>} The created account 
+ *
+ * @returns {Promise<Object|null>} The created account
  */
 export async function createAccount(accountData, options = {}) {
-    const {name, email, phone, password} = accountData;
+  const { name, email, phone, password } = accountData;
 
-    const createdAccount = await baseQuery(options.trx)
-        .insert({
-            name,
-            email,
-            phone,
-            password,
-        })
-        .returning("*");
+  const createdAccount = await baseQuery(options.trx)
+    .insert({
+      name,
+      email,
+      phone,
+      password,
+    })
+    .returning("*");
 
-    return createdAccount[0] ?? null;
+  return createdAccount[0] ?? null;
 }
 
 /**
  * Update an existing account by id.
- * 
+ *
  * @param {number} id
  * @param {Object} updateData
  * @param {Object} [options={}]
  * @param {import("knex").Knex} [options.trx]
- * 
- * @returns {Promise<Object|null>} 
+ *
+ * @returns {Promise<Object|null>}
  */
 export async function updateAccount(id, updateData, options = {}) {
-    const updated = await baseQuery(options.trx)
-        .where({ id })
-        .update(updateData)
-        .returning("*");
-    return updated[0] ?? null;
+  const updated = await baseQuery(options.trx)
+    .where({ id })
+    .update(updateData)
+    .returning("*");
+  return updated[0] ?? null;
 }
 
 /**
  * Delete an existing account by id.
- * 
+ *
  * @param {number|string} id
  * @param {Object} [options={}]
  * @param {import("knex").Knex} [options.trx]
- * 
+ *
  * @returns {Promise<Object|null>}
  */
 export async function deleteAccount(id, options = {}) {
-    const deleted = await baseQuery(options.trx)
-        .where({ id })
-        .del()
-        .returning("*");
+  const deleted = await baseQuery(options.trx)
+    .where({ id })
+    .del()
+    .returning("*");
 
-    return deleted[0] ?? null;
+  return deleted[0] ?? null;
 }
