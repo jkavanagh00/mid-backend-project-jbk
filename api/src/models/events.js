@@ -130,6 +130,7 @@ export async function findEventById(id, { trx } = {}) {
 }
 
 /**
+ * Create a new event.
  *
  * @param {string} title
  * @param {string} venue
@@ -186,6 +187,7 @@ export async function updateEvent(id, updateData, options = {}) {
 }
 
 /**
+ * Delete the event with the given id.
  *
  * @param {number|string} id
  * @param {Object} [options={}]

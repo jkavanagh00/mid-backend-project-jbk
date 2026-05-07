@@ -9,6 +9,14 @@ function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
+/**
+ * Find a cart by its account_id or guest_token
+ *
+ * @param {number} id account_id or guest_token
+ * @param {import("knex").Knex} [trx=db] - Optional transaction
+ *
+ * @returns {Promise<object|null>} The found cart or null if not found.
+ */
 export async function findCartByAccountId(id, trx = db) {
   const cart = await baseQuery(trx)
     .where("account_id", "=", id)
@@ -24,6 +32,16 @@ export async function findCartByAccountId(id, trx = db) {
   return cart;
 }
 
+/**
+ * Create a new cart.
+ *
+ * @param {object} user
+ * @param {number} user.id - user id or guest token
+ * @param {boolean} user.guest - true if user is a guest
+ * @param {import("knex").Knex} [trx=db] - Optional transaction
+ *
+ * @returns {Promise<Object|null>} The created cart, or null if creation fails.
+ */
 export async function createCart(user, trx = db) {
   let cart;
   if (user.guest) {
