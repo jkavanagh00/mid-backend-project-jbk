@@ -18,14 +18,12 @@ function baseQuery(trx = db) {
  *
  * @returns {Promise<number>} Total matching rows
  */
-export async function countAccounts(filters = [], options = []) {
-  const { trx } = options;
-  const qb = baseQuery(trx);
-
-  const row = await qb.count({ count: "*" }).first();
-  const count = row?.count ?? row?.["count(*)"] ?? 0;
-
-  return Number(count);
+export async function countAccounts(filters = {}, options = {}) {
+  const qb = baseQuery(options.trx);
+  await applyAccountFilters(qb, filters);
+  await applyOptions(qb, options);
+  const totalRows = await countTableRows(qb);
+  return Number(totalRows);
 }
 
 /**
@@ -50,40 +48,9 @@ export async function countAccounts(filters = [], options = []) {
  * @returns {Promise<Array<Object>>}
  */
 export async function listAccounts(filters = {}, options = {}) {
-  const { limit, offset, orderBy = "id", order = "asc", trx } = options;
-
-  const qb = baseQuery(trx).select("*");
-
-  const { createdAt, updatedAt, search } = filters;
-
-  if (createdAt) {
-    qb.where("created_at", ">", createdAt);
-  }
-
-  if (updatedAt) {
-    qb.where("updated_at", ">", updatedAt);
-  }
-
-  if (search) {
-    qb.where(function () {
-      this.where("name", "ilike", `%${search}%`).orWhere(
-        "email",
-        "ilike",
-        `%${search}%`,
-      );
-    });
-  }
-
-  qb.orderBy(orderBy, String(order).toLowerCase() === "desc" ? "desc" : "asc");
-
-  if (Number.isInteger(limit) && limit > 0) {
-    qb.limit(limit);
-  }
-
-  if (Number.isInteger(offset) && offset >= 0) {
-    qb.offset(offset);
-  }
-
+  const qb = baseQuery(options.trx).select("*");
+  await applyAccountFilters(qb, filters);
+  await applyOptions(qb, options);
   return qb;
 }
 

@@ -53,6 +53,7 @@
     "#models/*": "./src/models/*",
     "#routers": "./src/routers/index.js",
     "#routers/*": "./src/routers/*",
-    "#schemas/*": "./src/schemas/*"
+    "#schemas/*": "./src/schemas/*",
+    "#utils/*": "./src/utils/*"
   }
 }

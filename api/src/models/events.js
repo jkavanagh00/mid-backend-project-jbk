@@ -1,4 +1,5 @@
 import db from "#configs/database.js";
+import { countTableRows, applyEventFilters, applyOptions } from "#utils/db.js";
 
 const TABLE = "event";
 
@@ -43,13 +44,11 @@ function baseQuery(trx = db) {
  * @returns {Promise<number>} Total matching rows
  */
 export async function countEvents(filters = {}, options = {}) {
-  const { trx } = options;
-  const qb = baseQuery(trx);
-
-  const row = await qb.count({ count: "*" }).first();
-  const count = row?.count ?? row?.["count(*)"] ?? 0;
-
-  return Number(count);
+  const qb = baseQuery(options.trx);
+  await applyEventFilters(qb, filters);
+  await applyOptions(qb, options);
+  const totalRows = await countTableRows(qb);
+  return Number(totalRows);
 }
 
 /**
@@ -75,42 +74,9 @@ export async function countEvents(filters = {}, options = {}) {
  * @returns {Promise<Array<Object>>}
  */
 export async function listEvents(filters = {}, options = {}) {
-  const { limit, offset, orderBy = "id", order = "asc", trx } = options;
-
-  const qb = baseQuery(trx).select("*");
-
-  const { currency, minPrice, maxPrice, search } = filters;
-
-  if (currency) {
-    qb.where("currency", "=", currency);
-  }
-
-  if (minPrice) {
-    qb.where("price", ">=", minPrice);
-  }
-
-  if (maxPrice) {
-    qb.where("price", "<=", maxPrice);
-  }
-
-  if (search) {
-    qb.where(function () {
-      this.where("title", "ilike", `%${search}%`)
-        .orWhere("description", "ilike", `%${search}%`)
-        .orWhere("venue", "ilike", `%${search}%`);
-    });
-  }
-
-  qb.orderBy(orderBy, String(order).toLowerCase() === "desc" ? "desc" : "asc");
-
-  if (Number.isInteger(limit) && limit > 0) {
-    qb.limit(limit);
-  }
-
-  if (Number.isInteger(offset) && offset >= 0) {
-    qb.offset(offset);
-  }
-
+  const qb = baseQuery(options.trx).select("*");
+  await applyEventFilters(qb, filters);
+  await applyOptions(qb, options);
   return qb;
 }
 
