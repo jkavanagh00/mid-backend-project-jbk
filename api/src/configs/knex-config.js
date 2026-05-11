@@ -4,7 +4,7 @@ const defaultDbFilename =
 
 export function createKnexConfig() {
     return {
-        client: "pg",
+        client,
         connection: {
             host: process.env.DB_HOST,
             port: process.env.DB_PORT,
