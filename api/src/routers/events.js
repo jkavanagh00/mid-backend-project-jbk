@@ -6,7 +6,7 @@ import {
   patchEvent,
   removeEvent,
 } from "#controllers/events.js";
-import { authenticateJWT, reqireRegisteredUser } from "#middlewares/auth.js";
+import { authenticateJWT, requireRegisteredUser } from "#middlewares/auth.js";
 
 const eventsRouter = express.Router();
 
