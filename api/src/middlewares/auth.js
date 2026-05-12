@@ -45,6 +45,13 @@ export function identifyUserOrGuest(req, res, next) {
   next();
 }
 
+export function requireRegisteredUser(req, res, next) {
+  if (req.user && req.user.guestId && !req.user.id) {
+    return res.status(403).json({ error: "Guests cannot access this resource" }); 
+  }
+  next();
+}
+
 // helper functions
 
 function extractToken(req) {
