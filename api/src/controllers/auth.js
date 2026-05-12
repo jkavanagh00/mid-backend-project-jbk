@@ -40,14 +40,11 @@ export async function login(req, res, next) {
     const { email, password } = loginAttempt;
 
     const account = await findAccountByEmail(email);
+    const isMatch = account
+      ? await bcrypt.compare(password, account.password)
+      : false;
 
-    if (!account) {
-      return res.status(404).json({ message: "Account does not exist" });
-    }
-
-    const isMatch = await bcrypt.compare(password, account.password);
-
-    if (!isMatch) {
+    if (!account || !isMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
