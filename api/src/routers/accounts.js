@@ -2,7 +2,6 @@ import express from "express";
 import {
   getAccounts,
   getAccountById,
-  postAccount,
   patchAccount,
   removeAccount,
 } from "#controllers/accounts.js";
@@ -152,36 +151,7 @@ accountsRouter.get("/me",authenticateJWT, requireRegisteredUser, showOwnAccount)
  *       404:
  *         description: Account not found
  */
-accountsRouter.get("/:id",authenticateJWT, requireRegisteredUser, getAccountById); // No auth for getting account by ID?
-
-/**
- * @swagger
- * /api/accounts:
- *   post:
- *     summary: Create a new account
- *     tags:
- *       - Accounts
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/AccountInput'
- *     responses:
- *       201:
- *         description: Account created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/AccountOutput'
- *       400:
- *         description: Invalid input
- *       409:
- *         description: Email already in use
- *       500:
- *         description: Server error
- */
-accountsRouter.post("/",authenticateJWT, requireRegisteredUser, postAccount);
+accountsRouter.get("/:id",authenticateJWT, requireRegisteredUser, getAccountById);
 
 /**
  * @swagger
