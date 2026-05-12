@@ -2,6 +2,7 @@ import {
   CartInput,
   CartItemInput,
   CartItemUpdateInput,
+  CartItemIdParams,
 } from "#schemas/carts.js";
 import { findCartByAccountId } from "#models/carts.js";
 import { insertCartItem, updateCartItemQuantity } from "#models/cart_items.js";
@@ -73,19 +74,21 @@ export async function addItemToCart(req, res, next) {
 export async function updateCartItem(req, res, next) {
   try {
     const updateRequest = CartItemUpdateInput.parse(req.body);
+    const itemIdParam = CartItemIdParams.parse(req.params);
+    const cartItemId = itemIdParam.id;
     const { id } = req.user;
     const cart = await findCartByAccountId(id);
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
     const item = cart.items.find(
-      (item) => item.id === updateRequest.cartItemId,
+      (item) => item.id === cartItemId,
     );
     if (!item) {
       return res.status(404).json({ message: "Cart item not found" });
     }
     await updateCartItemQuantity(
-      updateRequest.cartItemId,
+      cartItemId,
       updateRequest.quantity,
     );
     res.status(200).json({ message: "Cart item quantity updated" });
