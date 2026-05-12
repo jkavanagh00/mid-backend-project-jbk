@@ -9,7 +9,7 @@ import { showOwnAccount } from "#controllers/auth.js";
 import { authenticateJWT, requireRegisteredUser } from "#middlewares/auth.js";
 
 const accountsRouter = express.Router();
-
+accountsRouter.use(authenticateJWT, requireRegisteredUser);
 
 /**
  * @swagger
@@ -93,7 +93,7 @@ const accountsRouter = express.Router();
  *       500:
  *         description: Server error
  */
-accountsRouter.get("/", getAccounts); // No auth for listing accounts?
+accountsRouter.get("/", getAccounts);
 
 /**
  * @swagger
@@ -122,7 +122,7 @@ accountsRouter.get("/", getAccounts); // No auth for listing accounts?
  *       500:
  *         description: Server error
  */
-accountsRouter.get("/me",authenticateJWT, requireRegisteredUser, showOwnAccount);
+accountsRouter.get("/me", showOwnAccount);
 
 /**
  * @swagger
@@ -151,7 +151,7 @@ accountsRouter.get("/me",authenticateJWT, requireRegisteredUser, showOwnAccount)
  *       404:
  *         description: Account not found
  */
-accountsRouter.get("/:id",authenticateJWT, requireRegisteredUser, getAccountById);
+accountsRouter.get("/:id", getAccountById);
 
 /**
  * @swagger
@@ -194,7 +194,7 @@ accountsRouter.get("/:id",authenticateJWT, requireRegisteredUser, getAccountById
  *       500:
  *         description: Server error
  */
-accountsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchAccount);
+accountsRouter.patch("/:id", patchAccount);
 
 /**
  * @swagger
@@ -231,6 +231,6 @@ accountsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchAccoun
  *       500:
  *         description: Server error
  */
-accountsRouter.delete("/:id",authenticateJWT, requireRegisteredUser, removeAccount);
+accountsRouter.delete("/:id", removeAccount);
 
 export default accountsRouter;
