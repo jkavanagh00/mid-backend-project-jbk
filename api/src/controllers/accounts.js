@@ -36,7 +36,7 @@ export async function getAccounts(req, res, next) {
     const totalPages = Math.ceil(totalItems / pageSize);
 
     res.json({
-      data,
+      data: data.map(scrubPassword),
       meta: {
         page,
         pageSize,
@@ -60,7 +60,7 @@ export async function getAccountById(req, res, next) {
       });
     }
 
-    res.json({ data: account });
+    res.json({ data: scrubPassword(account) });
   } catch (error) {
     next(error);
   }
@@ -68,7 +68,6 @@ export async function getAccountById(req, res, next) {
 
 export async function postAccount(req, res, next) {
   try {
-    // Parse the request body before handing data to the model layer.
     const newAccount = await createAccount(AccountInput.parse(req.body));
 
     if (!newAccount) {
@@ -78,7 +77,7 @@ export async function postAccount(req, res, next) {
     }
 
     res.status(201).json({
-      data: newAccount,
+      data: scrubPassword(newAccount),
     });
   } catch (error) {
     next(error);
@@ -100,7 +99,7 @@ export async function patchAccount(req, res, next) {
       });
     }
 
-    return res.status(200).json({ data: updatedAccount });
+    return res.status(200).json({ data: scrubPassword(updatedAccount) });
   } catch (error) {
     next(error);
   }
@@ -118,8 +117,13 @@ export async function removeAccount(req, res, next) {
       });
     }
 
-    return res.status(200).json({ data: deletedAccount });
+    return res.status(200).json({ data: scrubPassword(deletedAccount) });
   } catch (error) {
     next(error);
   }
+}
+
+function scrubPassword(account) {
+  const { password, ...accountWithoutPassword } = account;
+  return accountWithoutPassword;
 }
