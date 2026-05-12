@@ -10,15 +10,8 @@ import { findEventById } from "#models/events.js";
 
 export async function getCartByAccountId(req, res, next) {
   try {
-    let cart;
-
-    if (req.user.id) {
-      const { id } = req.user;
-      cart = await findCartByAccountId(id);
-    } else if (req.user.guestId) {
-      const { guestId } = req.user;
-      cart = await findCartByAccountId(guestId);
-    }
+    const id = req.user.id ?? req.user.guestId;
+    const cart = await findCartByAccountId(id);
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -33,7 +26,7 @@ export async function getCartByAccountId(req, res, next) {
 export async function addItemToCart(req, res, next) {
   try {
     const addItemRequest = CartItemInput.parse(req.body);
-    const { id } = req.user;
+    const id = req.user.id ?? req.user.guestId;
     const cart = await findCartByAccountId(id);
 
     if (!cart) {
@@ -76,21 +69,16 @@ export async function updateCartItem(req, res, next) {
     const updateRequest = CartItemUpdateInput.parse(req.body);
     const itemIdParam = CartItemIdParams.parse(req.params);
     const cartItemId = itemIdParam.id;
-    const { id } = req.user;
+    const id = req.user.id ?? req.user.guestId;
     const cart = await findCartByAccountId(id);
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    const item = cart.items.find(
-      (item) => item.id === cartItemId,
-    );
+    const item = cart.items.find((item) => item.id === cartItemId);
     if (!item) {
       return res.status(404).json({ message: "Cart item not found" });
     }
-    await updateCartItemQuantity(
-      cartItemId,
-      updateRequest.quantity,
-    );
+    await updateCartItemQuantity(cartItemId, updateRequest.quantity);
     res.status(200).json({ message: "Cart item quantity updated" });
   } catch (error) {
     next(error);
@@ -100,19 +88,9 @@ export async function updateCartItem(req, res, next) {
 export async function postCart(req, res, next) {
   try {
     const newCartInput = CartInput.parse(req.body);
-    let user;
-
-    if (req.user.id) {
-      user = {
-        id: req.user.id,
-        guest: false,
-      };
-    } else if (req.user.guestId) {
-      user = {
-        id: req.user.guestId,
-        guest: true,
-      };
-    }
+    const user = req.user.id
+      ? { id: req.user.id, guest: false }
+      : { id: req.user.guestId, guest: true };
 
     const cart = await createCart(user);
     if (!cart) {
