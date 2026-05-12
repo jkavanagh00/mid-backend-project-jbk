@@ -29,11 +29,11 @@ export async function applyEventFilters(qb, filters = {}) {
     qb.where("currency", "=", currency);
   }
 
-  if (minPrice) {
+  if (minPrice !== undefined) {
     qb.where("price", ">=", minPrice);
   }
 
-  if (maxPrice) {
+  if (maxPrice !== undefined) {
     qb.where("price", "<=", maxPrice);
   }
 
