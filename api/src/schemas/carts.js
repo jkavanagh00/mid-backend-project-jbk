@@ -13,7 +13,6 @@ export const CartItemInput = z.object({
     .int()
     .min(1, "Event ID must be a positive integer"),
   quantity: z.coerce.number().int().min(1, "Quantity must be at least 1"),
-  unitPrice: z.coerce.number().positive("Unit price must be a positive number"),
 });
 
 export const CartItemIdParams = z.object({
