@@ -49,14 +49,14 @@ export async function applyEventFilters(qb, filters = {}) {
 }
 
 export async function applyAccountFilters(qb, filters = {}) {
-  const { created_at, updated_at, search } = filters;
+  const { createdAt, updatedAt, search } = filters;
 
-  if (created_at) {
-    qb.where("created_at", ">=", created_at);
+  if (createdAt) {
+    qb.where("created_at", ">=", createdAt);
   }
 
-  if (updated_at) {
-    qb.where("updated_at", ">=", updated_at);
+  if (updatedAt) {
+    qb.where("updated_at", ">=", updatedAt);
   }
 
   if (search) {
