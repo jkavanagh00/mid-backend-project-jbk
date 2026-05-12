@@ -53,7 +53,7 @@ export async function addItemToCart(req, res, next) {
       cart.id,
       eventId,
       addItemRequest.quantity,
-      addItemRequest.unitPrice,
+      event.price,
     );
 
     res
