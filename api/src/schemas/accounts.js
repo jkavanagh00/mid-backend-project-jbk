@@ -53,7 +53,7 @@ export const AccountPatchInput = AccountInput.partial();
  * - returns a validated and normalized object when valid
  * - throws a ZodError when a field is missing, has the wrong type, or fails a rule
  */
-export const AccountOutput = AccountInput.extend({
+export const AccountOutput = AccountInput.omit({ password: true }).extend({
   id: z.number().int().positive(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
