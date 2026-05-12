@@ -18,10 +18,16 @@ function baseQuery(trx = db) {
  * @returns {Promise<object|null>} The found cart or null if not found.
  */
 export async function findCartByAccountId(id, trx = db) {
-  const cart = await baseQuery(trx)
-    .where("account_id", "=", id)
-    .orWhere("guest_token", "=", id)
-    .first();
+  let cart;
+  if (typeof id === "number") {
+    cart = await baseQuery(trx)
+      .where("account_id", "=", id)
+      .first();
+  } else if (typeof id === "string") {
+    cart = await baseQuery(trx)
+      .where("guest_token", "=", id)
+      .first();
+  }
   if (!cart) {
     return null;
   }
