@@ -66,24 +66,6 @@ export async function getAccountById(req, res, next) {
   }
 }
 
-export async function postAccount(req, res, next) {
-  try {
-    const newAccount = await createAccount(AccountInput.parse(req.body));
-
-    if (!newAccount) {
-      return res.status(500).json({
-        error: "Failed to create account",
-      });
-    }
-
-    res.status(201).json({
-      data: scrubPassword(newAccount),
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 export async function patchAccount(req, res, next) {
   // OPTIONAL TODO: implement this handler only if optional scope is taken on
   try {
