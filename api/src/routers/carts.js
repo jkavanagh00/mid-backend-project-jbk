@@ -4,9 +4,10 @@ import {
   addItemToCart,
   updateCartItem,
 } from "#controllers/carts.js";
-import { authenticateJWT } from "#middlewares/auth.js";
+import { authenticateJWT, identifyUserOrGuest } from "#middlewares/auth.js";
 
 const cartsRouter = express.Router();
+cartsRouter.use(identifyUserOrGuest);
 
 /**
  * @swagger
@@ -45,7 +46,7 @@ const cartsRouter = express.Router();
  *       500:
  *         description: Server error
  */
-cartsRouter.get("/me", authenticateJWT, getCartByAccountId);
+cartsRouter.get("/me", getCartByAccountId);
 
 /**
  * @swagger
@@ -93,8 +94,7 @@ cartsRouter.get("/me", authenticateJWT, getCartByAccountId);
  *       500:
  *         description: Server error
  */
-cartsRouter.post("/items", authenticateJWT, addItemToCart);
-
+cartsRouter.post("/items", addItemToCart);
 
 /**
  * @swagger
@@ -138,6 +138,6 @@ cartsRouter.post("/items", authenticateJWT, addItemToCart);
  *       500:
  *         description: Server error
  */
-cartsRouter.put("/items/:id", authenticateJWT, updateCartItem);
+cartsRouter.put("/items/:id", updateCartItem);
 
 export default cartsRouter;

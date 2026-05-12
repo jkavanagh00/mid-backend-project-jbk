@@ -6,7 +6,7 @@ import {
   patchEvent,
   removeEvent,
 } from "#controllers/events.js";
-import { authenticateJWT } from "#middlewares/auth.js";
+import { authenticateJWT, reqireRegisteredUser } from "#middlewares/auth.js";
 
 const eventsRouter = express.Router();
 
@@ -171,7 +171,7 @@ eventsRouter.get("/:id", getEventById);
  *       500:
  *         description: Server error
  */
-eventsRouter.post("/", authenticateJWT, postEvent);
+eventsRouter.post("/", authenticateJWT, requireRegisteredUser, postEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -214,7 +214,7 @@ eventsRouter.post("/", authenticateJWT, postEvent);
  *       500:
  *         description: Server error
  */
-eventsRouter.patch("/:id", authenticateJWT, patchEvent);
+eventsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -249,6 +249,6 @@ eventsRouter.patch("/:id", authenticateJWT, patchEvent);
  *       500:
  *         description: Server error
  */
-eventsRouter.delete("/:id", authenticateJWT, removeEvent);
+eventsRouter.delete("/:id", authenticateJWT, requireRegisteredUser, removeEvent);
 
 export default eventsRouter;
