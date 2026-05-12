@@ -12,10 +12,10 @@ function baseQuery(trx = db) {
 /**
  * Inserts an item into a cart.
  *
- * @param {number} cartId - The cart's id.
- * @param {number} eventId - The event's id.
+ * @param {number} cart_id - The cart's id.
+ * @param {number} event_id - The event's id.
  * @param {number} quantity - Number of items to add.
- * @param {number} unitPrice - Price per item.
+ * @param {number} unit_price - Price per item.
  * @param {import("knex").Knex} [trx=db] - Optional transaction.
  *
  * @returns {Promise<object|null>} The inserted cart item, or null if insertion fails.
@@ -23,10 +23,10 @@ function baseQuery(trx = db) {
  * Note: Function parameters are in camelCase, while DB fields are in snake_case.
  */
 export async function insertCartItem(
-  cartId,
-  eventId,
+  cart_id,
+  event_id,
   quantity,
-  unitPrice,
+  unit_price,
   trx = db,
 ) {
   const item = await baseQuery(trx)
