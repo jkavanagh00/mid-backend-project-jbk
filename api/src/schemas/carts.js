@@ -20,4 +20,6 @@ export const CartItemIdParams = z.object({
   id: z.coerce.number().int().positive("Cart item ID must be a positive integer"),
 });
 
-export const CartItemUpdateInput = CartItemInput.partial();
+export const CartItemUpdateInput = z.object({
+  quantity: z.coerce.number().int().min(1, "Quantity must be at least 1"),
+});
