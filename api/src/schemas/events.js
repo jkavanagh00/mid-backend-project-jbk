@@ -30,7 +30,7 @@ export const EventIdParams = z.object({
  */
 export const EventInput = z.object({
   title: z.string().trim().min(1, "title is required"),
-  venue: z.string().trim().min(1, "title is required"),
+  venue: z.string().trim().min(1, "venue is required"),
   starts_at: z.string().trim().min(1, "starts_at is required"),
   description: z.string().trim().optional(),
   price: z.coerce.number().min(0, "price must be a non-negative number"),
