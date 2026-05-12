@@ -30,7 +30,9 @@ export function identifyUserOrGuest(req, res, next) {
     const guestToken = jsonwebtoken.sign({ guestId }, JWT_SECRET, {
       expiresIn: "7d",
     });
-    return res.status(200).json({ token: guestToken, guest: true });
+    req.user = { guestId };
+    req.guestToken = guestToken;
+    return next();
   }
 
   try {
