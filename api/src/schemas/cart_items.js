@@ -1,4 +1,4 @@
-import { zod } from "zod";
+import { z } from "zod";
 
 export const CartItemIdParams = z.object({
   id: z.coerce.number().int().positive("Cart item ID must be a positive integer"),
