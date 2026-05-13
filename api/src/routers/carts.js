@@ -2,6 +2,7 @@ import express from "express";
 import { getCartByAccountId, deleteCart } from "#controllers/carts.js";
 import { addItemToCart, updateCartItem } from "#controllers/cart_items.js";
 import { authenticateJWT, identifyUserOrGuest } from "#middlewares/auth.js";
+import { checkoutCart } from "#controllers/bookings.js";
 
 const cartsRouter = express.Router();
 cartsRouter.use(identifyUserOrGuest);
@@ -138,5 +139,7 @@ cartsRouter.post("/items", addItemToCart);
 cartsRouter.put("/items/:id", updateCartItem);
 
 cartsRouter.delete("/", deleteCart);
+
+cartsRouter.post("/checkout", authenticateJWT, checkoutCart);
 
 export default cartsRouter;
