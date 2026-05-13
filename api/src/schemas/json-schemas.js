@@ -7,7 +7,10 @@ import {
   AccountOutput,
 } from "#schemas/accounts.js";
 import { LoginParams } from "#schemas/auth.js";
-import { CartInput, CartItemInput, CartItemUpdateInput } from "#schemas/carts.js";
+import { CartInput, CartIdParams } from "#schemas/carts.js";
+import { CartItemIdParams, CartItemInput, CartItemUpdateInput } from "#schemas/cart_items.js";
+import { BookingIdParams } from "#schemas/bookings.js";
+import { BookingItemIdParams, BookingItemInput, BookingItemUpdateInput } from "#schemas/booking_items.js";
 import {
   EventListQuery,
   EventIdParams,
@@ -23,8 +26,14 @@ const schemas = {
   AccountOutput: zodToJsonSchema(AccountOutput, "AccountOutput").definitions.AccountOutput,
   LoginParams: zodToJsonSchema(LoginParams, "LoginParams").definitions.LoginParams,
   CartInput: zodToJsonSchema(CartInput, "CartInput").definitions.CartInput,
+  CartIdParams: zodToJsonSchema(CartIdParams, "CartIdParams").definitions.CartIdParams,
+  CartItemIdParams: zodToJsonSchema(CartItemIdParams, "CartItemIdParams").definitions.CartItemIdParams,
   CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions.CartItemInput,
   CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput").definitions.CartItemUpdateInput,
+  BookingIdParams: zodToJsonSchema(BookingIdParams, "BookingIdParams").definitions.BookingIdParams,
+  BookingItemIdParams: zodToJsonSchema(BookingItemIdParams, "BookingItemIdParams").definitions.BookingItemIdParams,
+  BookingItemInput: zodToJsonSchema(BookingItemInput, "BookingItemInput").definitions.BookingItemInput,
+  BookingItemUpdateInput: zodToJsonSchema(BookingItemUpdateInput, "BookingItemUpdateInput").definitions.BookingItemUpdateInput,
   EventListQuery: zodToJsonSchema(EventListQuery, "EventListQuery").definitions.EventListQuery,
   EventIdParams: zodToJsonSchema(EventIdParams, "EventIdParams").definitions.EventIdParams,
   EventInput: zodToJsonSchema(EventInput, "EventInput").definitions.EventInput,
