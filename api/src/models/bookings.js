@@ -12,12 +12,22 @@ function baseQuery(trx = db) {
 
 export async function listBookingsByAccountId(accountId, trx = db) {
     const bookings = await baseQuery(trx).where("account_id", "=", accountId);
-    return bookings ?? null;
+    const itemizedBookings = await Promise.all(
+      bookings.map(async (booking) => {
+        const items = await trx("booking_item").where("booking_id", "=", booking.id).select("*");
+        return {...booking, items: items ?? []};
+      })
+    );
+    return itemizedBookings;
 }
 
 export async function findBookingById(bookingId, trx = db) {
     const booking = await baseQuery(trx).where("id", "=", bookingId).first();
-    return booking ?? null;
+    if (!booking) {
+        return null;
+    }
+    const bookingItems = await trx("booking_item").where("booking_id", "=", bookingId).select("*");
+    return { ...booking, items: bookingItems ?? [] };
 } 
 
 /**
