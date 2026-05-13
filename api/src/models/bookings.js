@@ -10,6 +10,16 @@ function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
+export async function listBookingsByAccountId(accountId, trx = db) {
+    const bookings = await baseQuery(trx).where("account_id", "=", accountId);
+    return bookings ?? null;
+}
+
+export async function findBookingById(bookingId, trx = db) {
+    const booking = await baseQuery(trx).where("id", "=", bookingId).first();
+    return booking ?? null;
+} 
+
 /**
  * Creates a new booking for an account.
  *
