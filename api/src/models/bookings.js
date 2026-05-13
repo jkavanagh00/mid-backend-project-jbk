@@ -1,4 +1,5 @@
-import db from "#db/index.js";
+import db from "#configs/database.js";
+import { findCartByAccountId, updateCartStatus } from "#models/carts.js";
 
 const TABLE = "booking";
 /**
@@ -20,9 +21,33 @@ function baseQuery(trx = db) {
  */
 export async function createBooking(account_id, status = "pending", trx = db) {
   const bookingData = { account_id, status };
-  const [booking] = await baseQuery(trx)
-    .insert(bookingData)
-    .returning("*");
+  const [booking] = await baseQuery(trx).insert(bookingData).returning("*");
+  return booking;
+}
+
+export async function convertCartToBooking(accountId, trx) {
+  const cart = await findCartByAccountId(accountId, trx);
+
+  if (!cart) {
+    throw new Error("Cart not found");
+  }
+
+  if (!cart.items || cart.items.length === 0) {
+    throw new Error("Cart is empty");
+  }
+
+  const booking = await createBooking(accountId, "pending", trx);
+  const bookingId = booking.id;
+
+  const bookingItemsData = cart.items.map((item) => ({
+    booking_id: bookingId,
+    event_id: item.event_id,
+    quantity: item.quantity,
+    unit_price: item.unit_price,
+  }));
+
+  await updateCartStatus(cart.id, "checked_out", trx);
+  await trx("booking_item").insert(bookingItemsData);
   return booking;
 }
 

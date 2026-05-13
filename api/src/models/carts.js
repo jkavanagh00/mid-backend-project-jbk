@@ -66,3 +66,13 @@ export async function deleteCartById(cartId, trx = db) {
   await trx("cart_item").where("cart_id", "=", cartId).del();
   await baseQuery(trx).where("id", "=", cartId).del();
 }
+
+export async function updateCartStatus(cartId, status, trx = db) {
+  const updatedCart = await baseQuery(trx)
+    .where("id", "=", cartId)
+    .update({
+      status,
+    })
+    .returning("*");
+  return updatedCart;
+}
