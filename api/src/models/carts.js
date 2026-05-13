@@ -61,3 +61,8 @@ export async function createCart(user, trx = db) {
   }
   return cart;
 }
+
+export async function deleteCartById(cartId, trx = db) {
+  await trx("cart_item").where("cart_id", "=", cartId).del();
+  await baseQuery(trx).where("id", "=", cartId).del();
+}

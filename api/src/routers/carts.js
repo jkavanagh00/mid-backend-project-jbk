@@ -1,9 +1,6 @@
 import express from "express";
-import {
-  getCartByAccountId,
-  addItemToCart,
-  updateCartItem,
-} from "#controllers/carts.js";
+import { getCartByAccountId, deleteCart } from "#controllers/carts.js";
+import { addItemToCart, updateCartItem } from "#controllers/cart_items.js";
 import { authenticateJWT, identifyUserOrGuest } from "#middlewares/auth.js";
 
 const cartsRouter = express.Router();
@@ -139,5 +136,7 @@ cartsRouter.post("/items", addItemToCart);
  *         description: Server error
  */
 cartsRouter.put("/items/:id", updateCartItem);
+
+cartsRouter.delete("/", deleteCart);
 
 export default cartsRouter;
