@@ -46,7 +46,6 @@ function baseQuery(trx = db) {
 export async function countEvents(filters = {}, options = {}) {
   const qb = baseQuery(options.trx);
   await applyEventFilters(qb, filters);
-  await applyOptions(qb, options);
   const totalRows = await countTableRows(qb);
   return Number(totalRows);
 }
