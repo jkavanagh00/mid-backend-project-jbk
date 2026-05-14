@@ -161,3 +161,16 @@ export function parseEventPatchInput(body) {
     return result;
 }
 */
+
+export const EventOutput = z.object({
+  id: z.number().int().positive(),
+  title: z.string(),
+  venue: z.string(),
+  starts_at: z.string(),
+  description: z.string().nullable(),
+  price: z.number(),
+  currency: z.string(),
+  total_tickets: z.number().int().positive(),
+  created_at: z.string(),
+  updated_at: z.string(),
+});
