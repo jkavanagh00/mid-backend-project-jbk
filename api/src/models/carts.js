@@ -22,10 +22,12 @@ export async function findCartByAccountId(id, trx = db) {
   if (typeof id === "number") {
     cart = await baseQuery(trx)
       .where("account_id", "=", id)
+      .where("status", "=", "active")
       .first();
   } else if (typeof id === "string") {
     cart = await baseQuery(trx)
       .where("guest_token", "=", id)
+      .where("status", "=", "active")
       .first();
   }
   if (!cart) {
@@ -52,11 +54,11 @@ export async function createCart(user, trx = db) {
   let cart;
   if (user.guest) {
     [cart] = await baseQuery(trx)
-      .insert({ guest_token: user.id })
+      .insert({ guest_token: user.id, status: "active" })
       .returning("*");
   } else {
     [cart] = await baseQuery(trx)
-      .insert({ account_id: user.id })
+      .insert({ account_id: user.id, status: "active" })
       .returning("*");
   }
   return cart;

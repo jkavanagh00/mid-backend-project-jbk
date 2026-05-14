@@ -7,10 +7,13 @@ import { findCartByAccountId, createCart, deleteCartById } from "#models/carts.j
 export async function getCartByAccountId(req, res, next) {
   try {
     const id = req.user.id ?? req.user.guestId;
-    const cart = await findCartByAccountId(id);
+    let cart = await findCartByAccountId(id);
 
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      const user = req.user.id
+        ? { id: req.user.id, guest: false }
+        : { id: req.user.guestId, guest: true };
+      cart = await createCart(user);
     }
 
     res.status(200).json(cart);
