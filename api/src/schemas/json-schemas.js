@@ -33,6 +33,8 @@ const schemas = {
   CartItemInput: zodToJsonSchema(CartItemInput, "CartItemInput").definitions.CartItemInput,
   CartItemUpdateInput: zodToJsonSchema(CartItemUpdateInput, "CartItemUpdateInput").definitions.CartItemUpdateInput,
   BookingIdParams: zodToJsonSchema(BookingIdParams, "BookingIdParams").definitions.BookingIdParams,
+  BookingOutput: zodToJsonSchema(BookingOutput, "BookingOutput").definitions.BookingOutput,
+  BookingsListOutput: zodToJsonSchema(BookingsListOutput, "BookingsListOutput").definitions.BookingsListOutput,
   BookingItemIdParams: zodToJsonSchema(BookingItemIdParams, "BookingItemIdParams").definitions.BookingItemIdParams,
   BookingItemInput: zodToJsonSchema(BookingItemInput, "BookingItemInput").definitions.BookingItemInput,
   BookingItemUpdateInput: zodToJsonSchema(BookingItemUpdateInput, "BookingItemUpdateInput").definitions.BookingItemUpdateInput,
