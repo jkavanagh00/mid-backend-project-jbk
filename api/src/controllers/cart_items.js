@@ -4,7 +4,7 @@ import {
   CartItemUpdateInput,
 } from "#schemas/cart_items.js";
 import { findCartByAccountId } from "#models/carts.js";
-import { insertCartItem, updateCartItemQuantity } from "#models/cart_items.js";
+import { insertCartItem, updateCartItemQuantity, deleteCartItem } from "#models/cart_items.js";
 import { findEventById } from "#models/events.js";
 
 export async function addItemToCart(req, res, next) {
@@ -64,6 +64,26 @@ export async function updateCartItem(req, res, next) {
     }
     await updateCartItemQuantity(cartItemId, updateRequest.quantity);
     res.status(200).json({ message: "Cart item quantity updated" });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function removeCartItem(req, res, next) {
+  try {
+    const itemIdParam = CartItemIdParams.parse(req.params);
+    const cartItemId = itemIdParam.id;
+    const id = req.user.id ?? req.user.guestId;
+    const cart = await findCartByAccountId(id);
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+    const item = cart.items.find((item) => item.id === cartItemId);
+    if (!item) {
+      return res.status(404).json({ message: "Cart item not found" });
+    }
+    await deleteCartItem(cartItemId);
+    res.status(200).json({ message: "Cart item deleted" });
   } catch (error) {
     next(error);
   }

@@ -60,3 +60,9 @@ export async function updateCartItemQuantity(cartItemId, quantity, trx = db) {
 
   return item[0] ?? null;
 }
+
+export async function deleteCartItem(cartItemId, trx = db) {
+  await baseQuery(trx)
+    .where("id", "=", cartItemId)
+    .del();
+}

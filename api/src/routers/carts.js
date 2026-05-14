@@ -1,6 +1,6 @@
 import express from "express";
 import { getCartByAccountId, deleteCart } from "#controllers/carts.js";
-import { addItemToCart, updateCartItem } from "#controllers/cart_items.js";
+import { addItemToCart, updateCartItem, removeCartItem } from "#controllers/cart_items.js";
 import { authenticateJWT, identifyUserOrGuest, requireRegisteredUser } from "#middlewares/auth.js";
 import { checkoutCart } from "#controllers/bookings.js";
 
@@ -139,6 +139,8 @@ cartsRouter.post("/items", addItemToCart);
 cartsRouter.put("/items/:id", updateCartItem);
 
 cartsRouter.delete("/", deleteCart);
+
+cartsRouter.delete("/items/:id", removeCartItem);
 
 cartsRouter.post("/checkout", authenticateJWT, requireRegisteredUser, checkoutCart);
 
