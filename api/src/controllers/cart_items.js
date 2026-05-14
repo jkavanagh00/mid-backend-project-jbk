@@ -14,7 +14,7 @@ export async function addItemToCart(req, res, next) {
     const cart = await findCartByAccountId(id);
 
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      return res.status(404).json({ error: "Cart not found" });
     }
 
     if (cart.items.some((item) => item.event_id === addItemRequest.eventId)) {
@@ -30,7 +30,7 @@ export async function addItemToCart(req, res, next) {
     const event = await findEventById(eventId);
 
     if (!event) {
-      return res.status(404).json({ message: "Event not found" });
+      return res.status(404).json({ error: "Event not found" });
     }
 
     await insertCartItem(
@@ -56,11 +56,11 @@ export async function updateCartItem(req, res, next) {
     const id = req.user.id ?? req.user.guestId;
     const cart = await findCartByAccountId(id);
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      return res.status(404).json({ error: "Cart not found" });
     }
     const item = cart.items.find((item) => item.id === cartItemId);
     if (!item) {
-      return res.status(404).json({ message: "Cart item not found" });
+      return res.status(404).json({ error: "Cart item not found" });
     }
     await updateCartItemQuantity(cartItemId, updateRequest.quantity);
     res.status(200).json({ message: "Cart item quantity updated" });
@@ -76,11 +76,11 @@ export async function removeCartItem(req, res, next) {
     const id = req.user.id ?? req.user.guestId;
     const cart = await findCartByAccountId(id);
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      return res.status(404).json({ error: "Cart not found" });
     }
     const item = cart.items.find((item) => item.id === cartItemId);
     if (!item) {
-      return res.status(404).json({ message: "Cart item not found" });
+      return res.status(404).json({ error: "Cart item not found" });
     }
     await deleteCartItem(cartItemId);
     res.status(200).json({ message: "Cart item deleted" });

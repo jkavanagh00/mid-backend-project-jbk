@@ -45,7 +45,7 @@ export async function login(req, res, next) {
       : false;
 
     if (!account || !isMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
     const payload = { id: account.id, email: account.email };

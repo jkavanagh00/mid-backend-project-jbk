@@ -30,7 +30,7 @@ export async function getBookingById(req, res, next) {
     const bookingId = bookingIdParams.id;
     const booking = await findBookingById(bookingId);
     if (!booking || booking.account_id !== req.user.id) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({ error: "Booking not found" });
     }
     res.status(200).json({ booking });
   } catch (error) {

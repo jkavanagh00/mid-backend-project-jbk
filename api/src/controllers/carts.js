@@ -31,7 +31,7 @@ export async function postCart(req, res, next) {
 
     const cart = await createCart(user);
     if (!cart) {
-      return res.status(500).json({ message: "Failed to create cart" });
+      return res.status(500).json({ error: "Failed to create cart" });
     }
     const responseData = {
       data: cart,
@@ -52,7 +52,7 @@ export async function deleteCart(req, res, next) {
     const cart = await findCartByAccountId(id);
 
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      return res.status(404).json({ error: "Cart not found" });
     }
 
     await deleteCartById(cart.id);
