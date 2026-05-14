@@ -11,24 +11,28 @@ function baseQuery(trx = db) {
 }
 
 export async function listBookingsByAccountId(accountId, trx = db) {
-    const bookings = await baseQuery(trx).where("account_id", "=", accountId);
-    const itemizedBookings = await Promise.all(
-      bookings.map(async (booking) => {
-        const items = await trx("booking_item").where("booking_id", "=", booking.id).select("*");
-        return {...booking, items: items ?? []};
-      })
-    );
-    return itemizedBookings;
+  const bookings = await baseQuery(trx).where("account_id", "=", accountId);
+  const itemizedBookings = await Promise.all(
+    bookings.map(async (booking) => {
+      const items = await trx("booking_item")
+        .where("booking_id", "=", booking.id)
+        .select("*");
+      return { ...booking, items: items ?? [] };
+    }),
+  );
+  return itemizedBookings;
 }
 
 export async function findBookingById(bookingId, trx = db) {
-    const booking = await baseQuery(trx).where("id", "=", bookingId).first();
-    if (!booking) {
-        return null;
-    }
-    const bookingItems = await trx("booking_item").where("booking_id", "=", bookingId).select("*");
-    return { ...booking, items: bookingItems ?? [] };
-} 
+  const booking = await baseQuery(trx).where("id", "=", bookingId).first();
+  if (!booking) {
+    return null;
+  }
+  const bookingItems = await trx("booking_item")
+    .where("booking_id", "=", bookingId)
+    .select("*");
+  return { ...booking, items: bookingItems ?? [] };
+}
 
 /**
  * Creates a new booking for an account.
@@ -49,11 +53,15 @@ export async function convertCartToBooking(accountId, trx) {
   const cart = await findCartByAccountId(accountId, trx);
 
   if (!cart) {
-    throw new Error("Cart not found");
+    const error = new Error("Cart not found");
+    error.status = 404;
+    throw error;
   }
 
   if (!cart.items || cart.items.length === 0) {
-    throw new Error("Cart is empty");
+    const error = new Error("Cart is empty");
+    error.status = 422;
+    throw error;
   }
 
   const booking = await createBooking(accountId, "pending", trx);
