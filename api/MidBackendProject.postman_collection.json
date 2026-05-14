@@ -1,280 +1,3939 @@
 {
-  "info": {
-    "_postman_id": "d1e1b2c3-4567-890a-bcde-1234567890ab",
-    "name": "Mid Backend Project API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Sample Postman collection for testing the main API endpoints. Update the base URL and authentication as needed."
-  },
   "item": [
     {
-      "name": "Get All Accounts",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/accounts",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts"]
-        }
-      }
-    },
-    {
-      "name": "Get currently authenticated Account",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/me",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "me"]
-        }
-      }
-    },
-    {
-      "name": "Get Account by ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "1"]
-        }
-      }
-    },
-    {
-      "name": "Create Account",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/accounts",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts"]
-        }
-      }
-    },
-    {
-      "name": "Update Account",
-      "request": {
-        "method": "PATCH",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"email\": \"newemail@example.com\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "1"]
-        }
-      }
-    },
-    {
-      "name": "Delete Account",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "1"]
-        }
-      }
-    },
-    {
-      "name": "Register Account",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/register",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "register"]
-        }
-      }
-    },
-    {
-      "name": "Login Account",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/accounts/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "accounts", "login"]
-        }
-      }
-    },
-    {
-      "name": "Get All Events",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/events",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "events"]
-        }
-      }
-    },
-    {
-      "name": "Get Authenticated user's Cart",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3001/api/carts/me",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "carts", "me"]
-        }
-      }
-    },
-    {
-      "name": "Add Item to Cart",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"eventId\": 1,\n  \"quantity\": 2\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/carts/items",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "carts", "items"]
-        }
-      }
-    },
-    {
-      "name": "Update Cart Item quantity",
-      "request": {
-        "method": "PUT",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"quantity\": 3\n}"
-        },
-        "url": {
-          "raw": "http://localhost:3001/api/carts/items/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "3001",
-          "path": ["api", "carts", "items", "1"]
-        }
-      }
-    },
-    {
-        "name": "Get All Events",
-        "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-                "raw": "http://localhost:3001/api/events",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3001",
-                "path": ["api", "events"]
-            }
-        }
-    },
-    {
-        "name": "Get Event by ID",
-        "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-                "raw": "http://localhost:3001/api/events/1",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3001",
-                "path": ["api", "events", "1"]
-            }
-        }
-    },
-    {
-        "name": "Create Event",
-        "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": {
-                "mode": "raw",
-                "raw": "{\n  \"name\": \"Sample Event\",\n  \"description\": \"This is a sample event.\",\n  \"date\": \"2024-12-31T20:00:00Z\",\n  \"price\": 49.99\n}"
+      "name": "api",
+      "description": "",
+      "item": [
+        {
+          "name": "accounts",
+          "description": "",
+          "item": [
+            {
+              "id": "68c7fca8-77fa-434d-9070-88732ff39654",
+              "name": "Get paginated list of accounts",
+              "request": {
+                "name": "Get paginated list of accounts",
+                "description": {
+                  "content": "Returns a paginated list of accounts. Pagination is zero-based.",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": ["api", "accounts"],
+                  "host": ["{{baseUrl}}"],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (zero-based)",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of items per page",
+                        "type": "text/plain"
+                      },
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Search term for account name or email",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Filter by creation date",
+                        "type": "text/plain"
+                      },
+                      "key": "createdAt",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Filter by last update date",
+                        "type": "text/plain"
+                      },
+                      "key": "updatedAt",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": null
+              },
+              "response": [
+                {
+                  "id": "c728fe7d-a9c7-49eb-84b9-3424aee2b78b",
+                  "name": "Paginated list of accounts",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "accounts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for account name or email",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by creation date",
+                            "type": "text/plain"
+                          },
+                          "key": "createdAt",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by last update date",
+                            "type": "text/plain"
+                          },
+                          "key": "updatedAt",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "id": "26de3758-1265-43d2-b8a2-213b7ad108bd",
+                  "name": "Invalid query parameters",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "accounts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for account name or email",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by creation date",
+                            "type": "text/plain"
+                          },
+                          "key": "createdAt",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by last update date",
+                            "type": "text/plain"
+                          },
+                          "key": "updatedAt",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "c06c1ddf-9a4a-4dc9-aa63-e1a99a0cf339",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "accounts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for account name or email",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by creation date",
+                            "type": "text/plain"
+                          },
+                          "key": "createdAt",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by last update date",
+                            "type": "text/plain"
+                          },
+                          "key": "updatedAt",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "71e0f8f5-4da1-4dc6-9001-d86fbcc28e89",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "accounts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for account name or email",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by creation date",
+                            "type": "text/plain"
+                          },
+                          "key": "createdAt",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by last update date",
+                            "type": "text/plain"
+                          },
+                          "key": "updatedAt",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
             },
-            "url": {
-                "raw": "http://localhost:3001/api/events",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3001",
-                "path": ["api", "events"]
-            }
-        }
-    },
-    {
-        "name": "Update Event",
-        "request": {
-            "method": "PATCH",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": {
-                "mode": "raw",
-                "raw": "{\n  \"price\": 39.99\n}"
+            {
+              "name": "me",
+              "description": "",
+              "item": [
+                {
+                  "id": "3798370a-6f38-4077-9556-41075c1ee484",
+                  "name": "Get the authenticated user's account",
+                  "request": {
+                    "name": "Get the authenticated user's account",
+                    "description": {
+                      "content": "Returns the account details for the currently authenticated user.",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "accounts", "me"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "ca43032d-b8b8-4284-817d-8837f8569d81",
+                      "name": "The authenticated user's account",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "88621a73-5aca-45bc-99ec-a274201a0b85",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "a94c5ef5-95d5-4dae-b190-fc270feb760b",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "4b65169c-e688-4204-af7e-0eb3ca398ec9",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
             },
-            "url": {
-                "raw": "http://localhost:3001/api/events/1",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3001",
-                "path": ["api", "events", "1"]
+            {
+              "name": "{id}",
+              "description": "",
+              "item": [
+                {
+                  "id": "5ff87c88-d60e-484f-8b0a-4f361db9fa81",
+                  "name": "Get account by ID",
+                  "request": {
+                    "name": "Get account by ID",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "accounts", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Account ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "3ef9d30f-b80b-44dc-925a-ece41226b3e7",
+                      "name": "Account found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "249476c8-869f-4f91-a5e6-35cf57942833",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                },
+                {
+                  "id": "e7b5992d-efd0-4fb6-9030-8ea2758fdb14",
+                  "name": "Update an account",
+                  "request": {
+                    "name": "Update an account",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "accounts", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Account ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "b91d302a-5f86-4815-a789-f4e6c1a74649",
+                      "name": "Account updated",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "6809f85d-ffef-43ef-84a4-15d5ee3fb7aa",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "29ce717e-00d3-4885-a2a2-7afbd4ef763b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "78d40c07-b0f5-49f4-81cf-fb8d745db11f",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "270a6949-c9e8-4ae5-9c90-163a9d33f76d",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                },
+                {
+                  "id": "59884215-6d9c-47b1-94ee-313517c6aca0",
+                  "name": "Delete an account",
+                  "request": {
+                    "name": "Delete an account",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "accounts", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Account ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "849c1466-7187-4372-acb4-fd5c9343e593",
+                      "name": "Account deleted",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "15069528-1139-4bf3-944a-94f1cededfc2",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "8dac1b91-5dc6-4041-acd0-395aab2b95fa",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "c8eea6fc-f2e7-4d0a-9e24-d1ad40de9241",
+                      "name": "Account not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "f9c2ebaf-e7b9-4919-8620-e91430988c03",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "accounts", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Account ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
             }
-        }
-    },
-    {
-        "name": "Delete Event",
-        "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-                "raw": "http://localhost:3001/api/events/1",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3001",
-                "path": ["api", "events", "1"]
+          ]
+        },
+        {
+          "name": "auth",
+          "description": "",
+          "item": [
+            {
+              "name": "register",
+              "description": "",
+              "item": [
+                {
+                  "id": "bb2ad058-2568-45e3-a449-30c3f3008c9d",
+                  "name": "Register a new account",
+                  "request": {
+                    "name": "Register a new account",
+                    "description": {
+                      "content": "Creates a new user account with the provided details.",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "auth", "register"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "64627dc8-dcb1-4f13-989e-d0108cff7e25",
+                      "name": "Account created successfully",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "register"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "1b29fde8-6896-4b79-a2d6-a841ffc1320c",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "register"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "f41fc1ee-e575-4048-86dd-33dc60117d73",
+                      "name": "Email is already in use",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "register"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "439c06dd-0ffb-486b-9408-774883b6e421",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "register"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "login",
+              "description": "",
+              "item": [
+                {
+                  "id": "682bfbfb-cfa3-4dba-a3e9-03bfd7588a48",
+                  "name": "Log in to an account",
+                  "request": {
+                    "name": "Log in to an account",
+                    "description": {
+                      "content": "Authenticates a user and returns a JWT token if credentials are valid.",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "auth", "login"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "34f9b140-b94b-449c-8e14-8213862e34e5",
+                      "name": "Login successful",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "login"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"token\": \"<string>\"\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "3b7fc96c-b65c-4052-a01f-0050713dc086",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "login"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "70b988a9-757c-4f51-bf35-041ac56d190a",
+                      "name": "Invalid credentials",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "login"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "6daea4a4-e83e-4b7f-99bd-2df5e32921fe",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "auth", "login"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
             }
+          ]
+        },
+        {
+          "name": "bookings",
+          "description": "",
+          "item": [
+            {
+              "id": "b3ea339c-55e4-4890-94b4-4cf5e37d373b",
+              "name": "Get all bookings for the authenticated user",
+              "request": {
+                "name": "Get all bookings for the authenticated user",
+                "description": {},
+                "url": {
+                  "path": ["api", "bookings"],
+                  "host": ["{{baseUrl}}"],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": null
+              },
+              "response": [
+                {
+                  "id": "4604eb25-7ebe-4827-9094-d2ef44a9b497",
+                  "name": "List of bookings",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "bookings"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"bookings\": [\n    {\n      \"id\": \"<integer>\",\n      \"account_id\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"items\": [\n        {\n          \"id\": \"<integer>\",\n          \"booking_id\": \"<integer>\",\n          \"event_id\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"unit_price\": \"<string>\",\n          \"created_at\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"booking_id\": \"<integer>\",\n          \"event_id\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"unit_price\": \"<string>\",\n          \"created_at\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"account_id\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"items\": [\n        {\n          \"id\": \"<integer>\",\n          \"booking_id\": \"<integer>\",\n          \"event_id\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"unit_price\": \"<string>\",\n          \"created_at\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"booking_id\": \"<integer>\",\n          \"event_id\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"unit_price\": \"<string>\",\n          \"created_at\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "id": "c3bd9520-10c2-46cf-8c39-138501882739",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "bookings"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "d811bff9-9cec-425b-a85f-8219098617e4",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "bookings"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "name": "{id}",
+              "description": "",
+              "item": [
+                {
+                  "id": "5f2bd90f-1668-4cbf-a219-a7d06d1dee6b",
+                  "name": "Get a booking by ID",
+                  "request": {
+                    "name": "Get a booking by ID",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "bookings", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Booking ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "61d00ba4-071c-4af3-bccb-0a4e4a684add",
+                      "name": "Booking found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "bookings", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Booking ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"booking\": {\n    \"id\": \"<integer>\",\n    \"account_id\": \"<integer>\",\n    \"status\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"items\": [\n      {\n        \"id\": \"<integer>\",\n        \"booking_id\": \"<integer>\",\n        \"event_id\": \"<integer>\",\n        \"quantity\": \"<integer>\",\n        \"unit_price\": \"<string>\",\n        \"created_at\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"booking_id\": \"<integer>\",\n        \"event_id\": \"<integer>\",\n        \"quantity\": \"<integer>\",\n        \"unit_price\": \"<string>\",\n        \"created_at\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "d3edb117-8fa9-43fa-b868-0c27d87cce10",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "bookings", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Booking ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "1a29ebcf-1bfa-44a5-9798-41583ffc6c6d",
+                      "name": "Booking not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "bookings", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Booking ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "1d25289e-eb9d-4587-8a21-6ec32e1eb86d",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "bookings", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Booking ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "carts",
+          "description": "",
+          "item": [
+            {
+              "name": "me",
+              "description": "",
+              "item": [
+                {
+                  "id": "856896b9-86d8-487d-95d2-f1a5f6f712d7",
+                  "name": "Get the authenticated user's cart",
+                  "request": {
+                    "name": "Get the authenticated user's cart",
+                    "description": {
+                      "content": "Returns the cart for the currently authenticated user (by account or guest).",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "carts", "me"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "4771070a-0bf0-45ca-98e2-3325e863416b",
+                      "name": "The user's cart",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"account_id\": \"<integer>\",\n  \"guest_token\": \"<string>\",\n  \"items\": [\n    {\n      \"eventId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"eventId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "3b20ff53-bfa8-40e3-bc89-36d4e766d83c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "4ceb3e9c-3f2e-4416-a4bd-9be01f1c7c10",
+                      "name": "Cart not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "5706652a-1ff7-4811-a221-15b171a7dac6",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "me"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "items",
+              "description": "",
+              "item": [
+                {
+                  "id": "1c2411b5-2a26-41c1-903b-d82ac44d59a8",
+                  "name": "Add an item to the cart",
+                  "request": {
+                    "name": "Add an item to the cart",
+                    "description": {
+                      "content": "Adds an event item to the authenticated user's cart. If the item exists, increments its quantity.",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "carts", "items"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "a3a89528-f5ed-400a-bdd8-10bea8d96d40",
+                      "name": "Cart item quantity updated",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "3c0576a2-703a-441d-b5b0-aa7c12fae7cf",
+                      "name": "Item added to cart",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"item\": {\n    \"eventId\": \"<integer>\",\n    \"quantity\": \"<integer>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "67db604b-18c8-4e95-b6da-f5c36441da9e",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "600f098a-9667-47ec-af4b-2297aec6045a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "e576dc14-0bec-41e6-9dd6-643a170900f3",
+                      "name": "Cart or event not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "cc3cccf3-cf39-4916-84cf-ef1491128d9f",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "items"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eventId\": \"<integer>\",\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                },
+                {
+                  "name": "{id}",
+                  "description": "",
+                  "item": [
+                    {
+                      "id": "685e25ce-fc37-4363-b781-4f13a41b9659",
+                      "name": "Update a cart item quantity",
+                      "request": {
+                        "name": "Update a cart item quantity",
+                        "description": {
+                          "content": "Updates the quantity of a specific item in the authenticated user's cart.",
+                          "type": "text/plain"
+                        },
+                        "url": {
+                          "path": ["api", "carts", "items", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "type": "any",
+                              "value": "<integer>",
+                              "key": "id",
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Cart item ID",
+                                "type": "text/plain"
+                              }
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PUT",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "auth": null
+                      },
+                      "response": [
+                        {
+                          "id": "d0f37fd2-7d88-4e7d-8169-68b1d094f44b",
+                          "name": "Cart item quantity updated",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "PUT",
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "cookie": [],
+                          "_postman_previewlanguage": "json"
+                        },
+                        {
+                          "id": "93e5063b-4132-4c68-91da-2c5118f77cbf",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "PUT",
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        },
+                        {
+                          "id": "a87fbf38-3c60-4149-8031-6d60ce08c690",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "PUT",
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        },
+                        {
+                          "id": "edb3038a-c804-4a2e-9de5-f0e6de4f41d2",
+                          "name": "Cart or cart item not found",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "PUT",
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        },
+                        {
+                          "id": "f62aeb3a-7e6d-4c28-8ce8-265fce05c164",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "PUT",
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        }
+                      ],
+                      "event": [],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      }
+                    },
+                    {
+                      "id": "8b83595c-0582-465f-87b1-18b9527186d2",
+                      "name": "Remove an item from the cart",
+                      "request": {
+                        "name": "Remove an item from the cart",
+                        "description": {},
+                        "url": {
+                          "path": ["api", "carts", "items", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id",
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Cart item ID",
+                                "type": "text/plain"
+                              }
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "DELETE",
+                        "body": {},
+                        "auth": null
+                      },
+                      "response": [
+                        {
+                          "id": "24f7ed87-7550-49e5-9f64-851d9a129e42",
+                          "name": "Cart item deleted",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "id,<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "method": "DELETE",
+                            "body": {}
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "cookie": [],
+                          "_postman_previewlanguage": "json"
+                        },
+                        {
+                          "id": "892031a4-2008-463b-90cb-1c4c0f86e7a7",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "id,<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "body": {}
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        },
+                        {
+                          "id": "2dadb1e3-62bd-4873-9f7e-782ff934cb8c",
+                          "name": "Cart or cart item not found",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "id,<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "body": {}
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        },
+                        {
+                          "id": "ee53ee4b-2bef-4cb3-a582-6642bdaefe2f",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "url": {
+                              "path": ["api", "carts", "items", ":id"],
+                              "host": ["{{baseUrl}}"],
+                              "query": [],
+                              "variable": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "(Required) Cart item ID",
+                                    "type": "text/plain"
+                                  },
+                                  "type": "any",
+                                  "value": "id,<integer>",
+                                  "key": "id"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "body": {}
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "header": [],
+                          "cookie": [],
+                          "_postman_previewlanguage": "text"
+                        }
+                      ],
+                      "event": [],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "3fcc5b4f-e910-4920-99d9-f3b61cfd79b5",
+              "name": "Delete the authenticated user's cart",
+              "request": {
+                "name": "Delete the authenticated user's cart",
+                "description": {},
+                "url": {
+                  "path": ["api", "carts"],
+                  "host": ["{{baseUrl}}"],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {},
+                "auth": null
+              },
+              "response": [
+                {
+                  "id": "10605257-ae2e-4727-a261-191e9c88e00a",
+                  "name": "Cart deleted successfully",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "carts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "id": "01b1f8f3-b14a-4151-8b7e-e6963e341048",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "carts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "916861c1-d95b-4830-99ad-b5790351fc15",
+                  "name": "Cart not found",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "carts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "557cc4c4-503c-4932-8061-3d0154f7b360",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "carts"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "name": "checkout",
+              "description": "",
+              "item": [
+                {
+                  "id": "181dc7f9-4549-4245-8948-4715dcf3dd44",
+                  "name": "Checkout the cart and create a booking",
+                  "request": {
+                    "name": "Checkout the cart and create a booking",
+                    "description": {
+                      "content": "Converts the authenticated user's active cart into a booking. Requires a registered (non-guest) account.",
+                      "type": "text/plain"
+                    },
+                    "url": {
+                      "path": ["api", "carts", "checkout"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "ad145a95-2ffa-49a7-bfaf-4cb6934c0739",
+                      "name": "Booking created successfully",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"booking\": {\n    \"id\": \"<integer>\",\n    \"account_id\": \"<integer>\",\n    \"status\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"items\": [\n      {\n        \"id\": \"<integer>\",\n        \"booking_id\": \"<integer>\",\n        \"event_id\": \"<integer>\",\n        \"quantity\": \"<integer>\",\n        \"unit_price\": \"<string>\",\n        \"created_at\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"booking_id\": \"<integer>\",\n        \"event_id\": \"<integer>\",\n        \"quantity\": \"<integer>\",\n        \"unit_price\": \"<string>\",\n        \"created_at\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "a3e57c63-220b-4bc7-abc2-7f152fe47254",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "66bec5bc-e739-4a40-9a8f-f86d06c978cd",
+                      "name": "Guests cannot checkout",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "24a58805-8f26-4876-874c-322b75dc0d9d",
+                      "name": "Cart not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "fcdc0af3-2657-4224-aa69-71b840570692",
+                      "name": "Cart is empty",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "3b830c6a-3cb3-4437-bcbd-12d4fbf2dff9",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "carts", "checkout"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": []
+                        },
+                        "method": "POST",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "events",
+          "description": "",
+          "item": [
+            {
+              "id": "e7a7d638-f896-46db-a6bc-16f7fb97d8f9",
+              "name": "Get paginated list of events",
+              "request": {
+                "name": "Get paginated list of events",
+                "description": {
+                  "content": "Returns a paginated list of events. Pagination is zero-based.",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": ["api", "events"],
+                  "host": ["{{baseUrl}}"],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (zero-based)",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of items per page",
+                        "type": "text/plain"
+                      },
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Filter by currency code",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Minimum price filter",
+                        "type": "text/plain"
+                      },
+                      "key": "minPrice",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum price filter",
+                        "type": "text/plain"
+                      },
+                      "key": "maxPrice",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Search term for event title or description",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": null
+              },
+              "response": [
+                {
+                  "id": "627a9009-09fc-4605-8d67-6d1a151fc61a",
+                  "name": "Paginated list of events",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by currency code",
+                            "type": "text/plain"
+                          },
+                          "key": "currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Minimum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "minPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Maximum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "maxPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for event title or description",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"venue\": \"<string>\",\n      \"starts_at\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"total_tickets\": \"<integer>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"venue\": \"<string>\",\n      \"starts_at\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"total_tickets\": \"<integer>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalItems\": \"<integer>\",\n    \"totalPages\": \"<integer>\"\n  }\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "id": "1d51856f-67f4-4663-a44c-45acdfdce08e",
+                  "name": "Invalid query parameters",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by currency code",
+                            "type": "text/plain"
+                          },
+                          "key": "currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Minimum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "minPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Maximum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "maxPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for event title or description",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "c3dc51cd-8630-4be2-83ad-442570ac761a",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Page number (zero-based)",
+                            "type": "text/plain"
+                          },
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Number of items per page",
+                            "type": "text/plain"
+                          },
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Filter by currency code",
+                            "type": "text/plain"
+                          },
+                          "key": "currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Minimum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "minPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Maximum price filter",
+                            "type": "text/plain"
+                          },
+                          "key": "maxPrice",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Search term for event title or description",
+                            "type": "text/plain"
+                          },
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "cb4a7b3f-8cf3-444d-9d27-d252ea4f802a",
+              "name": "Create event (optional/admin)",
+              "request": {
+                "name": "Create event (optional/admin)",
+                "description": {},
+                "url": {
+                  "path": ["api", "events"],
+                  "host": ["{{baseUrl}}"],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": null
+              },
+              "response": [
+                {
+                  "id": "f744f8be-7c04-4e8a-83e5-3aa7ce3854be",
+                  "name": "Event created",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"venue\": \"<string>\",\n    \"starts_at\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"price\": \"<number>\",\n    \"currency\": \"<string>\",\n    \"total_tickets\": \"<integer>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "id": "8e4f77c6-3ba0-4343-ae85-4a9c637ebcdc",
+                  "name": "Invalid input",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "27e6044b-1b7b-4b1b-9383-1c86c767c98a",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "url": {
+                      "path": ["api", "events"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "header": [],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "name": "{id}",
+              "description": "",
+              "item": [
+                {
+                  "id": "3dd6f012-cf8f-45a8-aeea-8c917fdcc501",
+                  "name": "Get event by ID",
+                  "request": {
+                    "name": "Get event by ID",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "events", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Event ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "3be904d8-3761-4786-abdc-149f1a31b58d",
+                      "name": "Event found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"venue\": \"<string>\",\n    \"starts_at\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"price\": \"<number>\",\n    \"currency\": \"<string>\",\n    \"total_tickets\": \"<integer>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "88f64ea1-0f3f-4793-9b9f-0325628008a4",
+                      "name": "Event not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                },
+                {
+                  "id": "e94ae97f-f603-4ae6-b636-cd1b4616121b",
+                  "name": "Update event (optional/admin)",
+                  "request": {
+                    "name": "Update event (optional/admin)",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "events", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Event ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "987a2f02-1841-4e49-a2e0-992e8810cf24",
+                      "name": "Event updated",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"venue\": \"<string>\",\n    \"starts_at\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"price\": \"<number>\",\n    \"currency\": \"<string>\",\n    \"total_tickets\": \"<integer>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "bb2af91c-79e9-4f54-bd31-eea8c4de6051",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "b19ff9e4-7aab-4c45-952e-ef0bdedab01d",
+                      "name": "Event not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "49b818fb-bb85-484b-94e0-28681a508e3a",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "PATCH",
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"venue\": \"<string>\",\n  \"starts_at\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"total_tickets\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                },
+                {
+                  "id": "4ba03fa0-0a32-49a1-ae00-f0ca6f9c0ccc",
+                  "name": "Delete event (optional/admin)",
+                  "request": {
+                    "name": "Delete event (optional/admin)",
+                    "description": {},
+                    "url": {
+                      "path": ["api", "events", ":id"],
+                      "host": ["{{baseUrl}}"],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "id,<integer>",
+                          "key": "id",
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Event ID",
+                            "type": "text/plain"
+                          }
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {},
+                    "auth": null
+                  },
+                  "response": [
+                    {
+                      "id": "08a969f0-2000-4b43-b62b-8f52ae43d7c9",
+                      "name": "Event deleted",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"venue\": \"<string>\",\n    \"starts_at\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"price\": \"<number>\",\n    \"currency\": \"<string>\",\n    \"total_tickets\": \"<integer>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                      "cookie": [],
+                      "_postman_previewlanguage": "json"
+                    },
+                    {
+                      "id": "fed6bdff-da88-4fa3-8be6-8b933510bf72",
+                      "name": "Event not found",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    },
+                    {
+                      "id": "1421b8f3-7c94-4479-8eee-5c577aa17c82",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "url": {
+                          "path": ["api", "events", ":id"],
+                          "host": ["{{baseUrl}}"],
+                          "query": [],
+                          "variable": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "(Required) Event ID",
+                                "type": "text/plain"
+                              },
+                              "type": "any",
+                              "value": "id,<integer>",
+                              "key": "id"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "body": {}
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "header": [],
+                      "cookie": [],
+                      "_postman_previewlanguage": "text"
+                    }
+                  ],
+                  "event": [],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  }
+                }
+              ]
+            }
+          ]
         }
+      ]
     }
-  ]
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ],
+  "info": {
+    "_postman_id": "c5437838-d0d8-43d9-97b2-b84ebef94837",
+    "name": "Backend-Mid-Specialism",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation",
+      "type": "text/plain"
+    }
+  }
 }
