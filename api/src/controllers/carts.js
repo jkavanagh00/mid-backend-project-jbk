@@ -30,8 +30,14 @@ export async function postCart(req, res, next) {
     if (!cart) {
       return res.status(500).json({ message: "Failed to create cart" });
     }
-
-    res.status(201).json(cart);
+    const responseData = {
+      data: cart,
+      message: "Cart created successfully",
+    }
+    if (req.guestToken) {
+      response.guestToken = req.guestToken;
+    }
+    res.status(201).json(responseData);
   } catch (error) {
     next(error);
   }
