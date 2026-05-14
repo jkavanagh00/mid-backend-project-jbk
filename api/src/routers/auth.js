@@ -68,8 +68,6 @@ authRouter.post("/register", registerNewAccount);
  *         description: Invalid input
  *       401:
  *         description: Invalid credentials
- *       404:
- *         description: Account does not exist
  *       500:
  *         description: Server error
  */

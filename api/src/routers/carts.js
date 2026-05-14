@@ -31,7 +31,7 @@ cartsRouter.use(identifyUserOrGuest);
  *                   type: integer
  *                   nullable: true
  *                 guest_token:
- *                   type: integer
+ *                   type: string
  *                   nullable: true
  *                 items:
  *                   type: array
@@ -138,10 +138,102 @@ cartsRouter.post("/items", addItemToCart);
  */
 cartsRouter.put("/items/:id", updateCartItem);
 
+/**
+ * @swagger
+ * /api/carts:
+ *   delete:
+ *     summary: Delete the authenticated user's cart
+ *     tags:
+ *       - Carts
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Cart deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Cart not found
+ *       500:
+ *         description: Server error
+ */
 cartsRouter.delete("/", deleteCart);
 
+/**
+ * @swagger
+ * /api/carts/items/{id}:
+ *   delete:
+ *     summary: Remove an item from the cart
+ *     tags:
+ *       - Carts
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           $ref: '#/components/schemas/CartItemIdParams'
+ *         description: Cart item ID
+ *     responses:
+ *       200:
+ *         description: Cart item deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Cart or cart item not found
+ *       500:
+ *         description: Server error
+ */
 cartsRouter.delete("/items/:id", removeCartItem);
 
+/**
+ * @swagger
+ * /api/carts/checkout:
+ *   post:
+ *     summary: Checkout the cart and create a booking
+ *     description: Converts the authenticated user's active cart into a booking. Requires a registered (non-guest) account.
+ *     tags:
+ *       - Carts
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Booking created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 booking:
+ *                   $ref: '#/components/schemas/BookingOutput'
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Guests cannot checkout
+ *       404:
+ *         description: Cart not found
+ *       422:
+ *         description: Cart is empty
+ *       500:
+ *         description: Server error
+ */
 cartsRouter.post("/checkout", authenticateJWT, requireRegisteredUser, checkoutCart);
 
 export default cartsRouter;

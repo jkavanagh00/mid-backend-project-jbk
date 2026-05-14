@@ -87,7 +87,7 @@ const eventsRouter = express.Router();
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/EventInput'
+ *                     $ref: '#/components/schemas/EventOutput'
  *                 meta:
  *                   type: object
  *                   properties:
@@ -133,7 +133,7 @@ eventsRouter.get("/", getEvents);
  *               type: object
  *               properties:
  *                 data:
- *                   $ref: '#/components/schemas/EventInput'
+ *                   $ref: '#/components/schemas/EventOutput'
  *       404:
  *         description: Event not found
  */
@@ -165,7 +165,7 @@ eventsRouter.get("/:id", getEventById);
  *               type: object
  *               properties:
  *                 data:
- *                   $ref: '#/components/schemas/EventInput'
+ *                   $ref: '#/components/schemas/EventOutput'
  *       400:
  *         description: Invalid input
  *       500:
@@ -206,7 +206,7 @@ eventsRouter.post("/", authenticateJWT, requireRegisteredUser, postEvent);
  *               type: object
  *               properties:
  *                 data:
- *                   $ref: '#/components/schemas/EventInput'
+ *                   $ref: '#/components/schemas/EventOutput'
  *       400:
  *         description: Invalid input
  *       404:
@@ -243,7 +243,7 @@ eventsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchEvent);
  *               type: object
  *               properties:
  *                 data:
- *                   $ref: '#/components/schemas/EventInput'
+ *                   $ref: '#/components/schemas/EventOutput'
  *       404:
  *         description: Event not found
  *       500:
