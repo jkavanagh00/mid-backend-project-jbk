@@ -120,6 +120,7 @@ const swaggerSetup = (app) => {
     }
   }
 
+  app.get("/docs/swagger.json", (req, res) => res.json(mergedSpec));
   app.use("/docs", swaggerServe, swaggerUi.setup(mergedSpec));
 };
 
