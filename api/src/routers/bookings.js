@@ -42,7 +42,8 @@ bookingsRouter.get("/", getBookings);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/BookingIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Booking ID
  *     responses:
  *       200:

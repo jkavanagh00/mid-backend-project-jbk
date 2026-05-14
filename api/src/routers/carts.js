@@ -110,6 +110,7 @@ cartsRouter.post("/items", addItemToCart);
  *         required: true
  *         schema:
  *           type: integer
+ *           example: 1
  *         description: Cart item ID
  *     requestBody:
  *       required: true
@@ -180,7 +181,8 @@ cartsRouter.delete("/", deleteCart);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/CartItemIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Cart item ID
  *     responses:
  *       200:

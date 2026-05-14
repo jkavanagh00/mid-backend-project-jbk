@@ -122,7 +122,8 @@ eventsRouter.get("/", getEvents);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/EventIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Event ID
  *     responses:
  *       200:
@@ -189,7 +190,8 @@ eventsRouter.post("/", authenticateJWT, requireRegisteredUser, postEvent);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/EventIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Event ID
  *     requestBody:
  *       required: true
@@ -232,7 +234,8 @@ eventsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchEvent);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/EventIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Event ID
  *     responses:
  *       200:

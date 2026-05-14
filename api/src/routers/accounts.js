@@ -136,7 +136,8 @@ accountsRouter.get("/me", showOwnAccount);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/AccountIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Account ID
  *     responses:
  *       200:
@@ -167,7 +168,8 @@ accountsRouter.get("/:id", getAccountById);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/AccountIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Account ID
  *     requestBody:
  *       required: true
@@ -210,7 +212,8 @@ accountsRouter.patch("/:id", patchAccount);
  *         name: id
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/AccountIdParams'
+ *           type: integer
+ *           example: 1
  *         description: Account ID
  *     responses:
  *       200:
