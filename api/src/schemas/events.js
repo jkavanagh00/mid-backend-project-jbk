@@ -1,68 +1,48 @@
 import { z } from "zod";
 
 /**
- * Skeleton-ready query schema for listing events.
- *
- * This is included as a concrete example of how query params can be validated
- * and normalized before they reach the controller logic.
- *
- * Trainees may update the allowed fields and limits to match their own API.
- *
  * EventListQuery.parse(req.query):
  * - returns a normalized object when the input is valid
  * - throws a ZodError when a type or condition is not met
  */
 export const EventListQuery = z.object({
-    page: z.coerce.number().int().min(0).default(0),
-    pageSize: z.coerce.number().int().min(1).max(100).default(20),
-    currency: z.string().length(3).optional(),
-    minPrice: z.coerce.number().min(0).optional(),
-    maxPrice: z.coerce.number().min(0).optional(),
-    search: z.string().trim().optional(),
+  page: z.coerce.number().int().min(0).default(0),
+  pageSize: z.coerce.number().int().min(1).max(100).default(20),
+  currency: z.string().length(3).optional(),
+  minPrice: z.coerce.number().min(0).optional(),
+  maxPrice: z.coerce.number().min(0).optional(),
+  search: z.string().trim().optional(),
 });
 
 /**
- * Skeleton-ready path params schema for event routes using :id.
- *
- * This shows how route params can be validated before they are used in
- * controller or model code.
- *
  * EventIdParams.parse(req.params):
  * - returns a normalized object such as { id: 12 } when valid
  * - throws a ZodError if the value cannot be parsed into a positive integer
  */
 export const EventIdParams = z.object({
-    id: z.coerce.number().int().positive("id must be a positive integer"),
+  id: z.coerce.number().int().positive("id must be a positive integer"),
 });
 
 /**
- * Skeleton-ready body schema for creating an event.
- *
- * This schema intentionally matches the demo event fields used in the starter.
- * A trainee should update this schema when their project fields change.
- *
- * The rules below are examples of common validation requirements:
- * - `title` is required and must not be empty after trimming
- * - `price` is coerced to a number and must be non-negative
- * - `currency` is normalized to uppercase and must have length 3
- * - `description` is optional
- *
  * EventInput.parse(req.body):
  * - returns a validated and normalized object when valid
  * - throws a ZodError when a field is missing, has the wrong type, or fails a rule
  */
 export const EventInput = z.object({
-    title: z.string().trim().min(1, "title is required"),
-    venue: z.string().trim().min(1, "title is required"),
-    starts_at: z.string().trim().min(1, "starts_at is required"),
-    description: z.string().trim().optional(),
-    price: z.coerce.number().min(0, "price must be a non-negative number"),
-    currency: z
-        .string()
-        .trim()
-        .toUpperCase()
-        .length(3, "currency must be a 3-letter code"),
-    total_tickets: z.coerce.number().int().positive("total_tickets must be a positive integer"),
+  title: z.string().trim().min(1, "title is required"),
+  venue: z.string().trim().min(1, "venue is required"),
+  starts_at: z.string().trim().min(1, "starts_at is required"),
+  description: z.string().trim().optional(),
+  price: z.coerce.number().min(0, "price must be a non-negative number"),
+  currency: z
+    .string()
+    .trim()
+    .toUpperCase()
+    .length(3, "currency must be a 3-letter code"),
+  total_tickets: z.coerce
+    .number()
+    .int()
+    .positive("total_tickets must be a positive integer"),
 });
 
 /**

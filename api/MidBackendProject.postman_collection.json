@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "d1e1b2c3-4567-890a-bcde-1234567890ab",
+    "name": "Mid Backend Project API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Sample Postman collection for testing the main API endpoints. Update the base URL and authentication as needed."
+  },
+  "item": [
+    {
+      "name": "Get All Accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Get currently authenticated Account",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/me",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "me"]
+        }
+      }
+    },
+    {
+      "name": "Get Account by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create Account",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Update Account",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"newemail@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Account",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "1"]
+        }
+      }
+    },
+    {
+      "name": "Register Account",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "register"]
+        }
+      }
+    },
+    {
+      "name": "Login Account",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/accounts/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "accounts", "login"]
+        }
+      }
+    },
+    {
+      "name": "Get All Events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "Get Authenticated user's Cart",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/carts/me",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "carts", "me"]
+        }
+      }
+    },
+    {
+      "name": "Add Item to Cart",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"eventId\": 1,\n  \"quantity\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/carts/items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "carts", "items"]
+        }
+      }
+    },
+    {
+      "name": "Update Cart Item quantity",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"quantity\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/carts/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["api", "carts", "items", "1"]
+        }
+      }
+    },
+    {
+        "name": "Get All Events",
+        "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+                "raw": "http://localhost:3001/api/events",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "3001",
+                "path": ["api", "events"]
+            }
+        }
+    },
+    {
+        "name": "Get Event by ID",
+        "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+                "raw": "http://localhost:3001/api/events/1",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "3001",
+                "path": ["api", "events", "1"]
+            }
+        }
+    },
+    {
+        "name": "Create Event",
+        "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Sample Event\",\n  \"description\": \"This is a sample event.\",\n  \"date\": \"2024-12-31T20:00:00Z\",\n  \"price\": 49.99\n}"
+            },
+            "url": {
+                "raw": "http://localhost:3001/api/events",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "3001",
+                "path": ["api", "events"]
+            }
+        }
+    },
+    {
+        "name": "Update Event",
+        "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"price\": 39.99\n}"
+            },
+            "url": {
+                "raw": "http://localhost:3001/api/events/1",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "3001",
+                "path": ["api", "events", "1"]
+            }
+        }
+    },
+    {
+        "name": "Delete Event",
+        "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+                "raw": "http://localhost:3001/api/events/1",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "3001",
+                "path": ["api", "events", "1"]
+            }
+        }
+    }
+  ]
+}

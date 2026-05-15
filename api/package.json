@@ -20,24 +20,28 @@
     "db:seed:make": "npx knex seed:make"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.5",
     "deepmerge": "^4.3.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-list-endpoints": "^7.1.1",
+    "jsonwebtoken": "^9.0.3",
     "knex": "^3.1.0",
     "mysql2": "^3.10.0",
     "pg": "^8.11.5",
-    "sqlite3": "^5.1.7",
+    "sqlite3": "^6.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.25.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
+    "madge": "^8.0.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5"
   },
@@ -50,6 +54,7 @@
     "#models/*": "./src/models/*",
     "#routers": "./src/routers/index.js",
     "#routers/*": "./src/routers/*",
-    "#schemas/*": "./src/schemas/*"
+    "#schemas/*": "./src/schemas/*",
+    "#utils/*": "./src/utils/*"
   }
 }

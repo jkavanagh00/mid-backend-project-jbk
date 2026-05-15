@@ -1,11 +1,12 @@
 import express from "express";
 import {
-    getEvents,
-    getEventById,
-    postEvent,
-    patchEvent,
-    removeEvent,
+  getEvents,
+  getEventById,
+  postEvent,
+  patchEvent,
+  removeEvent,
 } from "#controllers/events.js";
+import { authenticateJWT, requireRegisteredUser } from "#middlewares/auth.js";
 
 const eventsRouter = express.Router();
 
@@ -40,6 +41,41 @@ const eventsRouter = express.Router();
  *           default: 0
  *         required: false
  *         description: Page number (zero-based)
+ *       - in: query
+ *         name: pageSize
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 100
+ *           default: 20
+ *         required: false
+ *         description: Number of items per page
+ *       - in: query
+ *         name: currency
+ *         schema:
+ *           type: string
+ *           minLength: 3
+ *           maxLength: 3
+ *         required: false
+ *         description: Filter by currency code
+ *       - in: query
+ *         name: minPrice
+ *         schema:
+ *           type: number
+ *         required: false
+ *         description: Minimum price filter
+ *       - in: query
+ *         name: maxPrice
+ *         schema:
+ *           type: number
+ *         required: false
+ *         description: Maximum price filter
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Search term for event title or description
  *     responses:
  *       200:
  *         description: Paginated list of events
@@ -51,29 +87,7 @@ const eventsRouter = express.Router();
  *                 data:
  *                   type: array
  *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         example: 1
- *                       price:
- *                         type: number
- *                         example: 150
- *                       currency:
- *                         type: string
- *                         example: DKK
- *                       title:
- *                         type: string
- *                         example: Live Jazz Trio
- *                       description:
- *                         type: string
- *                         example: An intimate jazz evening.
- *                       created_at:
- *                         type: string
- *                         format: date-time
- *                       updated_at:
- *                         type: string
- *                         format: date-time
+ *                     $ref: '#/components/schemas/EventInput'
  *                 meta:
  *                   type: object
  *                   properties:
@@ -97,12 +111,6 @@ const eventsRouter = express.Router();
 eventsRouter.get("/", getEvents);
 
 /**
- * OPTIONAL ROUTE PLACEHOLDER
- *
- * Demonstrates how a "get single resource" endpoint would be added.
- * Not required in the base trainee assignment unless optional scope
- * is implemented.
- *
  * @swagger
  * /api/events/{id}:
  *   get:
@@ -114,11 +122,18 @@ eventsRouter.get("/", getEvents);
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           $ref: '#/components/schemas/EventIdParams'
  *         description: Event ID
  *     responses:
  *       200:
  *         description: Event found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   $ref: '#/components/schemas/EventInput'
  *       404:
  *         description: Event not found
  */
@@ -135,11 +150,28 @@ eventsRouter.get("/:id", getEventById);
  *     summary: Create event (optional/admin)
  *     tags:
  *       - Events
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/EventInput'
  *     responses:
- *       501:
- *         description: Not implemented in base skeleton
+ *       201:
+ *         description: Event created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   $ref: '#/components/schemas/EventInput'
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
  */
-eventsRouter.post("/", postEvent);
+eventsRouter.post("/", authenticateJWT, requireRegisteredUser, postEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -157,12 +189,32 @@ eventsRouter.post("/", postEvent);
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           $ref: '#/components/schemas/EventIdParams'
+ *         description: Event ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/EventPatchInput'
  *     responses:
- *       501:
- *         description: Not implemented in base skeleton
+ *       200:
+ *         description: Event updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   $ref: '#/components/schemas/EventInput'
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Event not found
+ *       500:
+ *         description: Server error
  */
-eventsRouter.patch("/:id", patchEvent);
+eventsRouter.patch("/:id", authenticateJWT, requireRegisteredUser, patchEvent);
 
 /**
  * OPTIONAL ROUTE PLACEHOLDER
@@ -180,11 +232,23 @@ eventsRouter.patch("/:id", patchEvent);
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           $ref: '#/components/schemas/EventIdParams'
+ *         description: Event ID
  *     responses:
- *       501:
- *         description: Not implemented in base skeleton
+ *       200:
+ *         description: Event deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   $ref: '#/components/schemas/EventInput'
+ *       404:
+ *         description: Event not found
+ *       500:
+ *         description: Server error
  */
-eventsRouter.delete("/:id", removeEvent);
+eventsRouter.delete("/:id", authenticateJWT, requireRegisteredUser, removeEvent);
 
 export default eventsRouter;

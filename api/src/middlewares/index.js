@@ -1,7 +1,4 @@
-import {
-    apiErrorHandler,
-    apiNotFoundHandler,
-} from "#middlewares/errors.js";
+import { apiErrorHandler, apiNotFoundHandler } from "#middlewares/errors.js";
 
 /**
  * Middlewares that should run for every request before route handlers.
@@ -22,7 +19,4 @@ export const globalMiddlewares = [];
  * These are used for fallback and error handling after Express has tried
  * to match the request against the registered routes.
  */
-export const terminalMiddlewares = [
-    apiNotFoundHandler,
-    apiErrorHandler,
-];
+export const terminalMiddlewares = [apiNotFoundHandler, apiErrorHandler];

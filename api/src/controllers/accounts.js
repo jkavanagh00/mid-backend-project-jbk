@@ -1,0 +1,114 @@
+import {
+  listAccounts,
+  countAccounts,
+  findAccountById,
+  createAccount,
+  updateAccount,
+  deleteAccount,
+} from "#models/accounts.js";
+import {
+  AccountListQuery,
+  AccountIdParams,
+  AccountInput,
+  AccountPatchInput,
+} from "#schemas/accounts.js";
+import bcrypt from "bcrypt";
+
+export async function getAccounts(req, res, next) {
+  try {
+    const { page, pageSize, createdAt, updatedAt, search } =
+      AccountListQuery.parse(req.query);
+    const offset = page * pageSize;
+
+    const filters = {
+      createdAt,
+      updatedAt,
+      search,
+    };
+
+    const data = await listAccounts(filters, {
+      limit: pageSize,
+      offset,
+      orderBy: "id",
+      order: "asc",
+    });
+
+    const totalItems = await countAccounts(filters);
+    const totalPages = Math.ceil(totalItems / pageSize);
+
+    res.json({
+      data: data.map(scrubPassword),
+      meta: {
+        page,
+        pageSize,
+        totalItems,
+        totalPages,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getAccountById(req, res, next) {
+  try {
+    const { id } = AccountIdParams.parse(req.params);
+    const account = await findAccountById(id);
+
+    if (!account) {
+      return res.status(404).json({
+        error: "Account not found",
+      });
+    }
+
+    res.json({ data: scrubPassword(account) });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function patchAccount(req, res, next) {
+  try {
+    const { id } = AccountIdParams.parse(req.params);
+    const accountPatchInput = AccountPatchInput.parse(req.body);
+    if (accountPatchInput.password) {
+      const hashedPassword = await bcrypt.hash(accountPatchInput.password, 10);
+      accountPatchInput.password = hashedPassword;
+    }
+
+    const updatedAccount = await updateAccount(id, accountPatchInput);
+
+    if (!updatedAccount) {
+      return res.status(404).json({
+        error: "Account not found",
+      });
+    }
+
+    return res.status(200).json({ data: scrubPassword(updatedAccount) });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function removeAccount(req, res, next) {
+  try {
+    const { id } = AccountIdParams.parse(req.params);
+
+    const deletedAccount = await deleteAccount(id);
+
+    if (!deletedAccount) {
+      return res.status(404).json({
+        error: "Account not found",
+      });
+    }
+
+    return res.status(200).json({ data: scrubPassword(deletedAccount) });
+  } catch (error) {
+    next(error);
+  }
+}
+
+function scrubPassword(account) {
+  const { password, ...accountWithoutPassword } = account;
+  return accountWithoutPassword;
+}
