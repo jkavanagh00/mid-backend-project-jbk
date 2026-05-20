@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: events-startup-api
+    runtime: node
+    rootDir: api
+    buildCommand: npm install
+    startCommand: npm run db:migrate && npm start
+    envVars:
+      - key: APP_NAME
+        value: Events-Startup-API
+      - key: DB_CLIENT
+        value: pg
+      - key: DB_USE_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: events-startup-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: events-startup-db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: events-startup-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: events-startup-db
+          property: password
+      - key: DB_DATABASE_NAME
+        fromDatabase:
+          name: events-startup-db
+          property: database
+
+databases:
+  - name: events-startup-db
+    databaseName: events_startup
+    user: events_startup_user
+    plan: free
