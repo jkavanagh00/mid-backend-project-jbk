@@ -2,15 +2,18 @@
  * @param {import("knex").Knex} knex
  */
 export async function seed(knex) {
-  await knex('cart_item').del();
-  await knex('booking_item').del();
-  await knex('booking').del();
-  await knex('cart').del();
-  await knex('account').del();
-  await knex('event').del();
-  await knex.raw('ALTER SEQUENCE account_id_seq RESTART WITH 1');
-    await knex.raw('ALTER SEQUENCE booking_id_seq RESTART WITH 1');
-
+  await knex("cart_item").del();
+  await knex("booking_item").del();
+  await knex("booking").del();
+  await knex("cart").del();
+  await knex("account").del();
+  await knex("event").del();
+  await knex.raw("ALTER SEQUENCE cart_id_seq RESTART WITH 1");
+  await knex.raw("ALTER SEQUENCE cart_item_id_seq RESTART WITH 1");
+  await knex.raw("ALTER SEQUENCE event_id_seq RESTART WITH 1");
+  await knex.raw("ALTER SEQUENCE booking_item_id_seq RESTART WITH 1");
+  await knex.raw("ALTER SEQUENCE account_id_seq RESTART WITH 1");
+  await knex.raw("ALTER SEQUENCE booking_id_seq RESTART WITH 1");
 
   await knex("event").insert([
     {
