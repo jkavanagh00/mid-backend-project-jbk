@@ -2,9 +2,12 @@
  * @param {import("knex").Knex} knex
  */
 export async function seed(knex) {
-  await knex("booking_item").del();
-  await knex("booking").del();
-  await knex("event").del();
+  await knex('cart_items').del();
+  await knex('booking_items').del();
+  await knex('bookings').del();
+  await knex('carts').del();
+  await knex('accounts').del();
+  await knex('events').del();
 
   await knex("event").insert([
     {
