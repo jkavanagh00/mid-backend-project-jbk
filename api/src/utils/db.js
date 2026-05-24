@@ -7,7 +7,7 @@ export async function countTableRows(qb) {
 }
 
 export async function applyOptions(qb, options = {}) {
-  const { orderBy = "created_at", order = "desc", limit, offset } = options;
+  const { orderBy = "id", order = "desc", limit, offset } = options;
 
   qb.orderBy(orderBy, String(order).toLowerCase() === "desc" ? "desc" : "asc");
 
