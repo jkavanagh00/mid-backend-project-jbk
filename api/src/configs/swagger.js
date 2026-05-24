@@ -18,10 +18,22 @@ const swaggerOptions = {
     },
     components: {
       schemas,
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
     },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./src/routers/**/*.js", "./src/routers/*.js"],
-};
+}
 
 /**
  * Default OpenAPI operation stub.
