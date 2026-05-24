@@ -44,6 +44,7 @@ function baseQuery(trx = db) {
  * @returns {Promise<number>} Total matching rows
  */
 export async function countEvents(filters = {}, options = {}) {
+  // Only apply filters, not options (no orderBy/limit/offset for counts)
   const qb = baseQuery(options.trx);
   await applyEventFilters(qb, filters);
   const totalRows = await countTableRows(qb);

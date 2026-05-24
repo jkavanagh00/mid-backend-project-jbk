@@ -20,9 +20,9 @@ function baseQuery(trx = db) {
  * @returns {Promise<number>} Total matching rows
  */
 export async function countAccounts(filters = {}, options = {}) {
+  // Only apply filters, not options (no orderBy/limit/offset for counts)
   const qb = baseQuery(options.trx);
   await applyAccountFilters(qb, filters);
-  await applyOptions(qb, options);
   const totalRows = await countTableRows(qb);
   return Number(totalRows);
 }
