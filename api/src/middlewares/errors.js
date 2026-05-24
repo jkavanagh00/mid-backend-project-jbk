@@ -23,6 +23,7 @@ export function apiNotFoundHandler(req, res) {
 }
 
 export function apiErrorHandler(error, req, res, next) {
+  console.error(error);
   const status = getErrorStatus(error);
   const isServerError = status >= 500;
   const shouldExposeDetails = process.env.NODE_ENV !== "production";
