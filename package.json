@@ -4,6 +4,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "dependency-cruiser": "^17.4.0",
     "jscpd": "^4.1.0"
   }
 }
